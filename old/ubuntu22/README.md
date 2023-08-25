@@ -1,0 +1,1 @@
+This directory is for all scripts pertaining to Ubuntu 22.

@@ -10,29 +10,12 @@ do
     read okuser
 
     #Exit case
-    if [ $VERSION == "EXIT" ]; then
+    if [ $okuser == "EXIT" ]; then
         break
     
     #Append the approved user to the list of good users
     else
-        APPROVED_USERS="$(APPROVED_USERS),$(okuser)"
-    fi
-done
-
-#Let user input all allowed users
-while true
-do
-    #User inputs a new user
-    echo "Enter approved users (not admins) (EXIT to break): "
-    read okuser
-
-    #Exit case
-    if [ $VERSION == "EXIT" ]; then
-        break
-    
-    #Append the approved user to the list of good users
-    else
-        APPROVED_USERS="$(APPROVED_USERS),$(okuser)"
+        APPROVED_USERS="$APPROVED_USERS,$okuser"
     fi
 done
 
@@ -44,13 +27,13 @@ do
     read okadmin
 
     #Exit case
-    if [ $VERSION == "EXIT" ]; then
+    if [ $okadmin == "EXIT" ]; then
         break
     
     #Append the approved admin to the list of good users AND admins
     else
-        APPROVED_SUDOS="$(APPROVED_SUDOS),$(okadmin)"
-        APPROVED_USERS="$(APPROVED_USERS),$(okadmin)"
+        APPROVED_SUDOS="$APPROVED_SUDOS,$okadmin"
+        APPROVED_USERS="$APPROVED_USERS,$okadmin"
     fi
 done
 

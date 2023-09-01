@@ -52,7 +52,7 @@ else
     echo "Whiptail is not installed."
 
     apt install whiptail
-
+fi
 
 ################################################################################################
 # Assigning variable values                                                                    #
@@ -69,7 +69,7 @@ while true
 do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
-            "1)" "User scan."                                                \
+            "1)" "User scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -78,9 +78,7 @@ do
             ./subscripts/users.sh
         ;;
         "X)")
-            break
+            exit
         ;;
     esac
 done
-
-exit

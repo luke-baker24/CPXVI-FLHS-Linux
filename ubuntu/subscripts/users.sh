@@ -80,6 +80,8 @@ do
     #The sixth parameter is the home path of the user, if they have one
     user_home_path=$(echo $passwd_entry | cut -d " " -f 6)
 
+    echo $user_home_path
+
     #Perform home path checks
     
     #The seventh parameter is the shell of the user - most probably /sbin/nologin

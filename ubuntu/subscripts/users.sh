@@ -2,6 +2,7 @@
 APPROVED_USERS=""
 APPROVED_SUDOS=""
 
+'''
 #Let user input all allowed users
 while true
 do
@@ -36,11 +37,22 @@ do
         APPROVED_USERS="$APPROVED_USERS,$okadmin"
     fi
 done
+'''
+
+mkdir temp
 
 
-for approved_user in $(echo $APPROVED_USERS | cut -d "," -f 1)
+#wget 
+
+admins_raw=$(cat readmesample.txt | sed -n '/^<h2>Authorized Administrators and Users<\/h2>$/,/^<\/pre>$/p' | sed -n '/^<pre>$/,/^<\/pre>$/p' | sed -n '/^Authorized Administrators:$/,/^<b>Authorized Users:<\/b>$/p' | sed '1d;$d' | grep -v "password: " | grep -v "^$" | cut -d " " -f 1 | perl -pe 's/\n/$1,/')
+users_raw=$(cat readmesample.txt | sed -n '/^<h2>Authorized Administrators and Users<\/h2>$/,/^<\/pre>$/p' | sed -n '/^<pre>$/,/^<\/pre>$/p' | sed -n '/^<b>Authorized Users:<\/b>$/,/^<\/pre>$/p' | sed '1d;$d' | perl -pe 's/\n/$1,/')
+
+APPROVED_USERS="$admins_raw,$users_raw"
+APPROVED_SUDOS=$admins_raw
+
+for approved_user in ${APPROVED_USERS//,/ }
 do
-    passwd_entry=$(cat /etc/passwd | grep -E "^$approved_user")
+    passwd_entry=$(getent passwd $approved_user)
 
     #The second parameter is whether or not the user is in /etc/shadow
     user_has_shadow=$(echo $passwd_entry | cut -d " " -f 2)

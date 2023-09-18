@@ -1,18 +1,38 @@
 #Apt package scan
 
+RED='\033[0;31m' #Red color code
+NC='\033[0m' #No color code
+
 whitelist=""
 
 while read package; do
-    if [[ $(apt list --installed | grep $package) ]]; then
+    if [[ $package ]] && [[ $(apt list --installed 2>/dev/null | tail -n +2 | grep $package) ]]; then
         whitelist="$whitelist:$(apt-cache depends --no-suggests --no-breaks --no-conflicts --no-replaces --recurse $package | grep -v '<' | rev | cut -d ' ' -f -1 | rev | cut -d ':' -f 1 | sort -u | sed 's/\$/\|/')"
     fi
 done < metapackages.txt
 
 echo $whitelist | tr " " "\n" > whitelist.txt
 
-apt list --installed | cut -d "/" -f 1 > installedpackages.txt
+apt list --installed 2>/dev/null | tail -n +2 | cut -d "/" -f 1 > installedpackages.txt
 
-grep -v -f whitelist.txt installedpackages.txt
+for new_package in $(grep -v -f whitelist.txt installedpackages.txt)
+do
+    if [[ $(dpkg -s $new_package | grep Source) ]]
+    then
+        echo "Cool" > /dev/null
+    else
+        echo -e "[ ${RED}PKG${NC} ] $new_package is an unauthorized parent package"
+    fi
+done
+
+
+
+
+
+
+
+
+
 
 
 #File directories

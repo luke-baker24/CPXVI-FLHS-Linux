@@ -70,12 +70,16 @@ do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "User scan." \
+            "2)" "Apt scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
     case $CHOICE in
         "1)")
             ./subscripts/users.sh
+        ;;
+        "2)")
+            ./subscripts/scans.sh
         ;;
         "X)")
             exit

@@ -1,0 +1,10 @@
+bare
+core
+core20
+core22
+gnome-3-38-2004
+gnome-42-2204
+gtk-common-themes
+snap-store
+snapd
+snapd-desktop-integration

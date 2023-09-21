@@ -25,6 +25,10 @@ if [ $VERSION == "22.04" ]; then
 elif [ $VERSION == "20.04" ]; then
     echo "Running on version Focal Fossa"
 
+#Detects Focal
+elif [ $VERSION == "18.04" ]; then
+    echo "Running on version Bionic Beaver"
+
 #Version not detected - file broken
 else
     echo "Version not found - was /etc/os-release tampered with or inaccessible?"
@@ -72,7 +76,7 @@ do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "User scan." \
-            "2)" "Apt scan." \
+            "2)" "Package/snap scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -84,7 +88,37 @@ do
             ./subscripts/scans.sh
         ;;
         "X)")
-            exit
+            break
+        ;;
+    esac
+done
+
+while true
+do
+    CHOICE=$(
+        whiptail --title "What policies do you want to enforce?" --menu "" 18 50 10 \
+            "1)" "Apt security." \
+            "2)" "Firefox settings." \
+            "3)" "Configure UFW." \
+            "4)" "Secure kernel sysctl settings." \
+            "X)" "Exit." 3>&2 2>&1 1>&3	
+    )
+
+    case $CHOICE in
+        "1)")
+            ./subscripts/policies/apt.sh
+        ;;
+        "2)")
+            ./subscripts/policies/firefox.sh
+        ;;
+        "3)")
+            ./subscripts/policies/firewall.sh
+        ;;
+        "4)")
+            ./subscripts/policies/kernel.sh
+        ;;
+        "X)")
+            break
         ;;
     esac
 done

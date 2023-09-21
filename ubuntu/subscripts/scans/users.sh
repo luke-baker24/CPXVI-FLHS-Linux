@@ -1,9 +1,17 @@
 #Creating blank lists for approved users
-APPROVED_USERS=""
-APPROVED_SUDOS=""
-
 RED='\033[0;31m' #Red color code
 NC='\033[0m' #No color code
+
+output_log () {
+    classification="$1"
+    message="$2"
+    
+    echo -e "[ ${RED}$classification${NC} ] $message"
+    echo "[ $classification ] $message" > $directory/logs/output.log
+}
+
+APPROVED_USERS=""
+APPROVED_SUDOS=""
 
 UID_MIN=$(awk '/^UID_MIN/ {print $2}' /etc/login.defs)
 UID_MAX=$(awk '/^UID_MAX/ {print $2}' /etc/login.defs)
@@ -79,7 +87,7 @@ do
     then
         echo "Cool" > /dev/null
     else
-        echo -e "[ ${RED}USR${NC} ] User $real_user is not in the approved users list"
+        output_log "USR" "User $real_user is not in the approved users list"
     fi
 done
 
@@ -93,7 +101,7 @@ do
     then
         echo "Cool" > /dev/null
     else
-        echo -e "[ ${RED}USR${NC} ] User $real_admin is not in the approved sudoers list"
+        output_log "USR" "User $real_admin is not in the approved sudoers list"
     fi
 done
 
@@ -105,7 +113,7 @@ do
     then
         echo "Cool" > /dev/null
     else
-        echo -e "[ ${RED}USR${NC} ] User $approved_admin is in the approved sudoers list but is not in the sudoers list"
+        output_log "USR" "User $approved_admin is in the approved sudoers list but is not in the sudoers list"
     fi
 done
 
@@ -133,7 +141,7 @@ do
     #Perform UID checks
     if [ "$user_id" == "0" ] && [ "$real_user" != "root" ]
     then
-        echo -e "[ ${RED}USR${NC} ] User $real_user has UID 0. $real_user may be an unauthorized user if it was not already flagged."
+        output_log "USR" "User $real_user has UID 0. $real_user may be an unauthorized user if it was not already flagged."
     fi
 
 
@@ -143,7 +151,7 @@ do
     #Perform GID checks
     if [ "$group_id" == "0" ] && [ "$real_user" != "root" ]
     then
-        echo -e "[ ${RED}USR${NC} ] User $real_user has GID 0"
+        output_log "USR" "User $real_user has GID 0"
     fi
 
 
@@ -157,7 +165,7 @@ do
     #Perform home path checks
     if [[ "$user_home_path" =~ "^/home/" ]] && [ "$real_user" != "root" ]
     then
-        echo -e "[ ${RED}USR${NC} ] User $real_user home path is not located in /home"
+        output_log "USR" "User $real_user home path is not located in /home"
     fi
     
 
@@ -167,7 +175,7 @@ do
     #Perform shell checks
     if [ "$user_shell" != "/bin/bash" ] && [[ ",$real_users," = *",$real_user,"* ]]
     then
-    	echo -e "[ ${RED}USR${NC} ] $real_user shell is not bash"
+    	output_log "USR" "$real_user shell is not bash"
     fi
 done
 
@@ -180,7 +188,7 @@ do
 
     if [ ${#users_password} -le "1" ]
     then
-        echo -e "[ ${RED}USR${NC} ] $real_user does not have a password"
+        output_log "USR" "$real_user does not have a password"
     fi
 done
 
@@ -194,13 +202,13 @@ do
     admins_password=$(echo $admin_passwords_raw | cut -d "," -f $index)
     
     if [ ${#admins_password} -lt 10 ]; then
-        echo -e "[ ${RED}USR${NC} ] $admin's password failed complexity checks"
+        output_log "USR" "$admin's password failed complexity checks"
     elif [[ $admins_password != *[A-Z]* ]]; then
-        echo -e "[ ${RED}USR${NC} ] $admin's password failed complexity checks"
+        output_log "USR" "$admin's password failed complexity checks"
     elif [[ $admins_password != *[a-z]* ]]; then
-        echo -e "[ ${RED}USR${NC} ] $admin's password failed complexity checks"
+        output_log "USR" "$admin's password failed complexity checks"
     elif [[ $admins_password != *[0-9]* ]]; then
-        echo -e "[ ${RED}USR${NC} ] $admin's password failed complexity checks"
+        output_log "USR" "$admin's password failed complexity checks"
     fi
 
     ((index+=1))

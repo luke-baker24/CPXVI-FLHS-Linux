@@ -38,6 +38,10 @@ rm -r temp
 
 
 
+
+
+
+
 ### Binaries & Libraries :
 
 #/usr: contains user utilities and applications, and replicates the root directory structure
@@ -60,6 +64,7 @@ rm -r temp
         #Seems pretty empty normally. Should be easy to baseline
 
 
+
 ### Etc :
 
 #/etc: system-global configuration files
@@ -69,10 +74,12 @@ rm -r temp
     #RESEARCH
 
 
+
 ### Boot :
 
 #/boot: files needed to start the system
     #RESEARCH HEAVILY
+
 
 
 ### Home dirs: 
@@ -80,6 +87,7 @@ rm -r temp
 #/home: user home directories
     #Scan, but should be easier to scan - look for any files not in the standard home dir
 #/root: root's home directory
+
 
 
 ### For Services only :
@@ -90,12 +98,14 @@ rm -r temp
 #/opt: additional software for the system
 
 
+
 ### Devices (should be blank) :
 
 #/media: mount point for external devices
     #Just see if anything's there that shouldn't be - should be essentially empty
 #/mnt: temporary mount points, like network filesystems
     #Just see if anything's there that shouldn't be - should be entirely empty
+
 
 
 ### VFS's (cannot baseline) :

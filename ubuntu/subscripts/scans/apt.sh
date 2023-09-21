@@ -13,6 +13,7 @@ output_log () {
     echo "[ $classification ] $message" > $directory/logs/output.log
 }
 
+
 whitelist=""
 
 mkdir temp

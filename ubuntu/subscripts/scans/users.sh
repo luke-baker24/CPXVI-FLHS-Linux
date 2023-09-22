@@ -7,7 +7,7 @@ output_log () {
     message="$2"
     
     echo -e "[ ${RED}$classification${NC} ] $message"
-    echo "[ $classification ] $message" > $directory/logs/output.log
+    echo "[ $classification ] $message" >> $directory/../../logs/output.log
 }
 
 APPROVED_USERS=""

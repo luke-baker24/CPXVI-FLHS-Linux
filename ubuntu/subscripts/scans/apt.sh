@@ -10,25 +10,28 @@ output_log () {
     message="$2"
     
     echo -e "[ ${RED}$classification${NC} ] $message"
-    echo "[ $classification ] $message" > $directory/logs/output.log
+    echo "[ $classification ] $message" >> $directory/../../logs/output.log
 }
 
 
 whitelist=""
 
+rm -rf temp
+
 mkdir temp
 
 while read package; do
     if [[ $package ]] && [[ $(apt list --installed 2>/dev/null | tail -n +2 | grep $package) ]]; then
+        #this apt cache command sucks 
         whitelist="$whitelist:$(apt-cache depends --no-suggests --no-breaks --no-conflicts --no-replaces --recurse $package | grep -v '<' | rev | cut -d ' ' -f -1 | rev | cut -d ':' -f 1 | sort -u | sed 's/\$/\|/')"
     fi
-done < metapackages.txt
+done < $directory/metapackages.txt
 
 echo $whitelist | tr " " "\n" > temp/whitelist.txt
 
 apt list --installed 2>/dev/null | tail -n +2 | cut -d "/" -f 1 > temp/installedpackages.txt
 
-for new_package in $(grep -v -f temp/whitelist.txt temp/installedpackages.txt)
+for new_package in $(grep -v -x -f temp/whitelist.txt temp/installedpackages.txt)
 do
     if [[ $(dpkg -s $new_package | grep Source) ]]
     then
@@ -38,6 +41,16 @@ do
     fi
 done
 
+
+#Snap scan
+snap list | cut -d $'\t' -f 1 | cut -d " " -f 1 | tail +2 > temp/snaplist.txt
+
+for new_package in $(grep -v -x -f $directory/snaps.txt temp/snaplist.txt)
+do
+    output_log "PKG" "$new_package is an unauthorized snap"
+done
+
+#Clear the temp directory
 rm -r temp
 
 

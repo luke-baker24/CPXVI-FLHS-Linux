@@ -19,15 +19,15 @@ OSNAME=$(lsb_release -a | grep "Distributor ID" | awk -F ":\t" "{ print $2}")
 VERSION=$(lsb_release -a | grep "Codename" | awk -F ":\t" "{ print $2}")
 
 #Detects Jammy Ubuntu
-if [ $OSNAME == "Ubuntu" ] && [ $VERSION == "jammy" ]; then
+if [ "$OSNAME" == "Ubuntu" ] && [ "$VERSION" == "jammy" ]; then
     echo "Running on version Jammy Jellyfish"
 
 #Detects Focal Ubuntu
-elif [ $OSNAME == "Ubuntu" ] && [ $VERSION == "focal" ]; then
+elif [ "$OSNAME" == "Ubuntu" ] && [ $VERSION == "focal" ]; then
         echo "Running on version Focal Fossa"
 
 #Detects Debian
-elif [ $OSNAME == "Debian" ]; then
+elif [ "$OSNAME" == "Debian" ]; then
     VERSION="debian"
     echo "Running on Debian 11"
 
@@ -76,6 +76,8 @@ Faith Lutheran Ubuntu Security Helper (2.0)' 16 42
 # Scans loop                                                                                   #
 ################################################################################################
 
+rm -rf logs
+
 mkdir logs
 
 while true; do
@@ -88,10 +90,10 @@ while true; do
 
     case $CHOICE in
         "1)")
-            ./subscripts/users.sh $1
+            ./subscripts/scans/users.sh "$(pwd)/baselines/$VERSION"
         ;;
         "2)")
-            ./subscripts/scans.sh $1
+            ./subscripts/scans/apt.sh "$(pwd)/baselines/$VERSION"
         ;;
         "X)")
             break

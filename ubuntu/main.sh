@@ -85,6 +85,7 @@ while true; do
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "User scan." \
             "2)" "Package/snap scan." \
+            "2)" "File scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -93,7 +94,10 @@ while true; do
             ./subscripts/scans/users.sh "$(pwd)/baselines/$VERSION"
         ;;
         "2)")
-            ./subscripts/scans/apt.sh "$(pwd)/baselines/$VERSION"
+            ./subscripts/scans/packages.sh "$(pwd)/baselines/$VERSION"
+        ;;
+        "3)")
+            ./subscripts/scans/files.sh "$(pwd)/baselines/$VERSION"
         ;;
         "X)")
             break

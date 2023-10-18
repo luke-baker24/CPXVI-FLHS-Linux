@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir new-baselines
 
 #Files db
@@ -15,7 +17,7 @@ aide --init --config=/var/lib/aide/aide.conf
 cp /var/lib/aide/aide.db.new ./new-baselines/polcheck.db
 
 #Etc copied
-cp -r /etc/ ../new-baselines/etc/
+cp -r /etc/ ./new-baselines/etc/
 
 #Package baseline
 apt list --installed 2>/dev/null | tail -n +2 | cut -d "/" -f 1 > ./new-baselines/package-whitelist

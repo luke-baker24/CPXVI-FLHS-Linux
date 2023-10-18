@@ -1,0 +1,2 @@
+!/tmp/ssh-[[:alnum:]]{10}$ d
+!/tmp/ssh-[[:alnum:]]{10}/agent\\.[[:digit:]]+$ s

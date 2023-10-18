@@ -1,0 +1,15 @@
+# this rule becomes active once MBD_CHROOTS is set to a regexp matching
+# the chroots that your mini-buildd instances covers
+
+@@ifdef MBD_CHROOTS
+/var/lib/mini-buildd(/(var/tmp|zg/db))?$ d VarDir
+/var/lib/mini-buildd/config\\.sqlite$ f VarFile
+/var/lib/mini-buildd/zg/db/version$ f VarFile
+/var/lib/mini-buildd/var/log/(access|daemon)\\.log$ f Log
+!/var/lib/mini-buildd/var/tmp/tmp[[:alnum:]]{5}$ d
+/var/lib/mini-buildd/var/tmp/tmp{[:alnum]]{5}/S\\.gpg-agent(|\\.browser|\\.extra|\\.ssh)?$ s
+!/var/lib/mini-buildd/var/tmp/tmp[[:alnum:]]{5}/private-keys-v1\\.d$ d
+!/var/lib/mini-buildd/var/tmp/tmp{[:alnum]]{5}/(trustdb\\.gpg|pubring.kbx~?)$ f
+!/var/lib/mini-buildd/var/chroots(-libdir)?/@@{MBD_CHROOTS}$ d
+@@endif
+

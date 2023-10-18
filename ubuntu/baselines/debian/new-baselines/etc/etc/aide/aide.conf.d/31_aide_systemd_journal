@@ -1,0 +1,15 @@
+!/@@{RUN}/systemd/journal$ d
+!/@@{RUN}/systemd/journal/(dev-log|socket|stdout|syslog)$ s
+!/@@{RUN}/systemd/journal/flushed$ f
+/@@{RUN}/systemd/journal/kernel-seqnum$ f VarFile
+!/@@{RUN}/systemd/journal/streams$ d
+!/@@{RUN}/systemd/journal/io\\.systemd\\.journal$ s
+!/@@{RUN}/systemd/journal/streams/[[:digit:]]:[[:digit:]]+$ f
+/run/log(/journal)?$ d VarDirInode
+/@@{SYSTEMD_JOURNAL}$ d VarDirInode
+/@@{SYSTEMD_JOURNAL}/@@{MACHINEID}$ d VarDirInode
+/@@{SYSTEMD_JOURNAL}/@@{MACHINEID}/(system|user-[[:digit:]]+)\\.journal$ f VarFile
+!/@@{SYSTEMD_JOURNAL}/@@{MACHINEID}/(system|user-[[:digit:]]+)@[[:xdigit:]]{32}-[[:xdigit:]]{16}-[[:xdigit:]]{16}\\.journal$ f
+@@ifdef ALLOWED_EXTRA_JOURNALS
+/@@{SYSTEMD_JOURNAL}/@@{MACHINEID}/@@{ALLOWED_EXTRA_JOURNALS}\\.journal$ f VarFile
+@@endif

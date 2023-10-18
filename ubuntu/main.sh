@@ -15,8 +15,8 @@ else
 fi
 
 #Getting ubuntu version
-OSNAME=$(lsb_release -a | grep "Distributor ID" | awk -F ":\t" "{ print $2}")
-VERSION=$(lsb_release -a | grep "Codename" | awk -F ":\t" "{ print $2}")
+OSNAME=$(lsb_release -a | grep "Distributor ID" | cut -d $'\t' -f 2)
+VERSION=$(lsb_release -a | grep "Codename" | cut -d $'\t' -f 2)
 
 #Detects Jammy Ubuntu
 if [ "$OSNAME" == "Ubuntu" ] && [ "$VERSION" == "jammy" ]; then
@@ -43,7 +43,7 @@ else
     if [ $yninput == "y" ]; then
         echo "Enter version codename (ex. jammy): "
         read VERSION
-        
+         
     #User does not manually input version number - necessary for script so exit
     else
         echo "Exiting."
@@ -85,7 +85,7 @@ while true; do
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "User scan." \
             "2)" "Package/snap scan." \
-            "2)" "File scan." \
+            "3)" "File scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 

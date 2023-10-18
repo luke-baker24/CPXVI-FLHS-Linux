@@ -1,0 +1,17 @@
+!/dev/pts/[0-9]{1,2}$ c
+/dev/pts$ d VarDir
+
+# reading Xattrs for some /dev nodes will cause unwanted actions, including
+# - on-the-fly creation of other device nodes
+# - reboots (!)
+# - loading of kernel modules
+/dev/(btrfs-control|loop-control|net/tun|ppp|tty[[:digit:]]+|watchdog0?|vhost-net)$ c RamdiskData-X
+
+# the "RamdiskData-X" is a workaround for #986332 (2021-04-03) 
+# if you encounter "stack smashing detected" aborts, use --log-level=rule
+# find out which file causes the issue and add an appropriate -X rule.
+# As soon as #986332 is fixed the -X can be removed.
+
+# this rule is deliberately unrestricted
+/dev/ RamdiskData-X
+# this should be /dev/ RamdiskData

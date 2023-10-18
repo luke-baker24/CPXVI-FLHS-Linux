@@ -1,0 +1,14 @@
+[Unit]
+Description=CCS Client Service
+After=default.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/CyberPatriot
+ExecStart=/opt/CyberPatriot/CCSClient
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+

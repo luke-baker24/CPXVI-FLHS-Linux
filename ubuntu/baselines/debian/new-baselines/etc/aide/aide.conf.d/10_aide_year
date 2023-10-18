@@ -1,0 +1,16 @@
+#!/bin/sh
+
+printf "@@define YEAR4D %s\\n" "$(date +%Y)"
+printf "@@define LASTYEAR4D %s\\n" "$(date +%Y --date='last year')"
+
+# this will generate a lot of alarms on January 1st. If you want
+# to sleep in on New Year, consider using the following code snippet
+# which, in January, generates a regexp  that matches both the current
+# year and the previous year. This should prevent aide reports to be
+# generated on the New Year. It is assumed that the aide database will
+# be regenerated at least once in January.
+#if [ "$(date +%m)" = "01" ]; then
+#	printf "@@define YEAR4D (%s|%s)\\n" "$(date +%Y)" "$(date +%Y --date='last year')"
+#else
+#	printf "@@define YEAR4D %s\\n" "$(date +%Y)"
+#fi

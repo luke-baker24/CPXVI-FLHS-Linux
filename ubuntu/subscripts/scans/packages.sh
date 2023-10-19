@@ -33,7 +33,7 @@ snap list | cut -d $'\t' -f 1 | cut -d " " -f 1 | tail +2 > temp/snaplist.txt
 
 for new_package in $(grep -xvf $directory/snaps.txt temp/snaplist.txt)
 do
-    output_log "PKG" "$new_package is an unauthorized snap"
+    output_log "SNP" "$new_package is an unauthorized snap"
 done
 
 #Clear the temp directory

@@ -85,7 +85,7 @@ while true; do
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "User scan." \
             "2)" "Package/snap scan." \
-            "3)" "File scan." \
+            #"3)" "File scan." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -96,9 +96,9 @@ while true; do
         "2)")
             ./subscripts/scans/packages.sh "$(pwd)/baselines/$VERSION"
         ;;
-        "3)")
-            ./subscripts/scans/files.sh "$(pwd)/baselines/$VERSION"
-        ;;
+        #"3)")
+        #    ./subscripts/scans/files.sh "$(pwd)/baselines/$VERSION"
+        #;;
         "X)")
             break
         ;;
@@ -108,26 +108,30 @@ done
 while true; do
     CHOICE=$(
         whiptail --title "What policies do you want to enforce?" --menu "" 18 50 10 \
-            "1)" "Apt security." \
-            "2)" "Firefox settings." \
-            "3)" "Configure UFW." \
-            "4)" "Secure kernel sysctl settings." \
+            "1)" "Account policy (login.defs)." \
+            "2)" "Apt security." \
+            #"3)" "Firefox settings." \
+            "4)" "Configure UFW." \
+            #"5)" "Secure kernel sysctl settings." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
     case $CHOICE in
         "1)")
-            ./subscripts/policies/apt.sh
+            ./subscripts/policies/apt.sh "$(pwd)/baselines/$VERSION"
         ;;
         "2)")
-            ./subscripts/policies/firefox.sh
+            ./subscripts/policies/accountpolicy.sh "$(pwd)/baselines/$VERSION"
         ;;
-        "3)")
-            ./subscripts/policies/firewall.sh
-        ;;
+        #"3)")
+        #    ./subscripts/policies/firefox.sh "$(pwd)/baselines/$VERSION"
+        #;;
         "4)")
-            ./subscripts/policies/kernel.sh
+            ./subscripts/policies/firewall.sh "$(pwd)/baselines/$VERSION"
         ;;
+        #"5)")
+        #    ./subscripts/policies/kernel.sh "$(pwd)/baselines/$VERSION"
+        #;;
         "X)")
             break
         ;;

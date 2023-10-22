@@ -162,11 +162,3 @@ Unattended-Upgrade::Package-Blacklist {
 // uninstallable packages at the expense of rarely keeping back packages which
 // could be upgraded or installed.
 // Unattended-Upgrade::Allow-APT-Mark-Fallback "true";
-
-APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Unattended-Upgrade "1";
-APT::Periodic::Enable "1";
-APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Download-Upgradeable-Packages "1";
-APT::Periodic::Verbose "2";
-APT::Periodic::AutocleanInterval "21";

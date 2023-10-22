@@ -8,10 +8,8 @@
 # Please run 'systemctl daemon-reload' after making changes here.
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
-# / was on /dev/sda3 during installation
-UUID=dd049bde-cca5-4f85-b1d5-0d45dcb722e6 /               ext4    nodiratime,errors=remount-ro 0       1
-# /boot was on /dev/sda1 during installation
-UUID=82680138-2484-42f4-85a1-e7178a9ed285 /boot           ext2    nodiratime      0       2
-# swap was on /dev/sda2 during installation
-UUID=0cce4323-41ca-45e6-9320-a6fb1d7834c8 none            swap    sw              0       0
+# / was on /dev/sda1 during installation
+UUID=c60899da-0333-4a1f-b563-de01ff379bfe /               ext4    errors=remount-ro 0       1
+# swap was on /dev/sda5 during installation
+UUID=e4861fd7-d791-4bf2-928b-a756637f75cd none            swap    sw              0       0
 /dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0

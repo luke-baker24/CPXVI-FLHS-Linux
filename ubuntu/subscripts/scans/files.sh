@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#Install aide if it's not yet installed
-if ! [[ $(which aide) ]]; then
-    apt install aide
-fi
-
 function aide_scan()
 {
     cp $aide_directory/$1.conf /var/lib/aide/aide.conf
@@ -13,6 +8,11 @@ function aide_scan()
 
     aide --check --config=/var/lib/aide/aide.conf >> $logs_directory/policy-aide.log
 }
+
+#Install aide if it's not yet installed
+if ! [[ $(which aide) ]]; then
+    apt install aide
+fi
 
 aide_directory="$1/../../aide"
 logs_directory="$1/../../logs"

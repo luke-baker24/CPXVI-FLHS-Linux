@@ -53,12 +53,10 @@ text/troff; /usr/bin/man -X100 -l %s; test=test -n "$DISPLAY" -a -e /usr/bin/gxd
 application/x-troff-man; /usr/bin/man -l %s; needsterminal; description=Man page
 text/troff; /usr/bin/man -l %s; needsterminal; description=Man page
 text/html; /usr/bin/sensible-browser %s; description=HTML Text; nametemplate=%s.html
+text/html; /usr/bin/firefox-esr %s; description=HTML Text; test=test -n "$DISPLAY";  nametemplate=%s.html
+text/xml; /usr/bin/firefox-esr %s; description=XML Text; test=test -n "$DISPLAY";  nametemplate=%s.xml
 application/x-troff-man; /usr/bin/nroff -mandoc -Tutf8; copiousoutput; print=/usr/bin/nroff -mandoc -Tutf8 | print text/plain:-
 text/troff; /usr/bin/nroff -mandoc -Tutf8; copiousoutput; print=/usr/bin/nroff -mandoc -Tutf8 | print text/plain:-
-audio/basic; /usr/bin/play -t au %s
-audio/x-aiff; /usr/bin/play -t aiff %s
-audio/x-gsm; /usr/bin/play -t gsm %s
-audio/x-wav; /usr/bin/play -t wav %s
 text/plain; more %s; needsterminal
 application/pdf; atril %s; test=test -n "$DISPLAY"
 application/x-bzpdf; atril %s; test=test -n "$DISPLAY"
@@ -88,16 +86,6 @@ application/epub+zip; atril %s; test=test -n "$DISPLAY"
 x-content/software; /usr/bin/caja-autorun-software %s; test=test -n "$DISPLAY"
 inode/directory; /usr/bin/caja --no-desktop %s; test=test -n "$DISPLAY"
 application/x-mate-saved-search; /usr/bin/caja --no-desktop %s; test=test -n "$DISPLAY"
-application/cherrytree-ctd; cherrytree %s; test=test -n "$DISPLAY"
-application/cherrytree-ctz; cherrytree %s; test=test -n "$DISPLAY"
-application/cherrytree-ctb; cherrytree %s; test=test -n "$DISPLAY"
-application/cherrytree-ctx; cherrytree %s; test=test -n "$DISPLAY"
-text/html; /usr/bin/chromium %s; test=test -n "$DISPLAY"
-text/xml; /usr/bin/chromium %s; test=test -n "$DISPLAY"
-application/xhtml_xml; /usr/bin/chromium %s; test=test -n "$DISPLAY"
-application/x-mimearchive; /usr/bin/chromium %s; test=test -n "$DISPLAY"
-x-scheme-handler/http; /usr/bin/chromium %s; test=test -n "$DISPLAY"
-x-scheme-handler/https; /usr/bin/chromium %s; test=test -n "$DISPLAY"
 application/x-7z-compressed; engrampa %s; test=test -n "$DISPLAY"
 application/x-7z-compressed-tar; engrampa %s; test=test -n "$DISPLAY"
 application/x-ace; engrampa %s; test=test -n "$DISPLAY"
@@ -280,7 +268,6 @@ application/x-font-type1; mate-font-viewer %s; test=test -n "$DISPLAY"
 application/x-font-otf; mate-font-viewer %s; test=test -n "$DISPLAY"
 application/x-mate-theme-package; mate-appearance-properties -i %s; test=test -n "$DISPLAY"
 text/plain; gedit --new-document %s; test=test -n "$DISPLAY"
-application/x-stellarium-script; stellarium --scale-gui 2.0 %s; test=test -n "$DISPLAY"
 text/plain; pluma %s; test=test -n "$DISPLAY"
 text/english; vim %s; needsterminal
 text/plain; vim %s; needsterminal
@@ -333,6 +320,9 @@ application/msword; soffice --nologo --writer %s; edit=soffice --nologo --writer
 application/vnd.ms-works; soffice --nologo --writer %s; edit=soffice --nologo --writer %s; test=test -n "$DISPLAY"; description="Microsoft Works Document"; nametemplate=%s.wps
 application/zip; unzip -l %s; nametemplate=%s.zip; copiousoutput
 text/plain; view %s; edit=vi %s; compose=vi %s; needsterminal
+image/png;  /usr/bin/firefox-esr %s; description=PNG Image; test=test -n "$DISPLAY";  nametemplate=%s.png
+image/jpeg;  /usr/bin/firefox-esr %s; description=JPEG Image; test=test -n "$DISPLAY";  nametemplate=%s.jpeg
+image/gif;  /usr/bin/firefox-esr %s; description=GIF Image; test=test -n "$DISPLAY";  nametemplate=%s.gif
 application/x-troff-man; /usr/bin/man -Tascii -l %s | col -b; copiousoutput; description=Man page
 text/troff; /usr/bin/man -Tascii -l %s | col -b; copiousoutput; description=Man page
 text/*; less %s; needsterminal

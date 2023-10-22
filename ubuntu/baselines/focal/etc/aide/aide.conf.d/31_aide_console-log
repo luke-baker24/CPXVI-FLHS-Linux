@@ -1,0 +1,2 @@
+/@@{RUN}/console-log(/Debian-console-log)?$ VarFile
+/@@{RUN}/console-log/Debian-console-log/(8-_-_var_-_log_-_exim4_-_mainlog|9-_-_var_-_log_-_syslog_-_syslog)$ VarFile

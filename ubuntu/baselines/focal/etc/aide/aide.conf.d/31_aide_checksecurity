@@ -1,0 +1,6 @@
+/var/log/setuid/setuid.changes$ Log
+/var/log/setuid/setuid.changes\.1$ LoSerMemberLog
+/var/log/setuid/setuid.changes\.[2-9]$ SerMemberLog
+/var/log/setuid/setuid.changes\.10$ HiSerMemberLog
+/var/log/setuid/setuid.(today|yesterday)$ VarFile
+/var/log/setuid$ VarDir

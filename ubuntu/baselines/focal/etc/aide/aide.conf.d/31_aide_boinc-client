@@ -1,0 +1,16 @@
+/var/lib/boinc-client$ VarDir
+/var/lib/boinc-client/(get_current_version|global_prefs|daily_xfer_history|client_state(_prev)?)\.xml$ VarFile
+/var/lib/boinc-client/(time_stats_log|do_fp)$ VarFile
+/var/lib/boinc-client/lookup_website\.html$ VarFile
+/var/lib/boinc-client/std(err|out)dae\.txt$ VarFile
+
+# Add rules for your projects. Example: seti@home
+#/var/lib/boinc-client/job_log_setiathome\.berkeley\.edu\.txt$ VarFile
+#/var/lib/boinc-client/master_setiathome\.berkeley\.edu\.xml$ VarFile
+#/var/lib/boinc-client/projects/setiathome\.berkeley\.edu$ VarDir
+#/var/lib/boinc-client/projects/setiathome\.berkeley\.edu/\.*$ VarFile+ANF+ARF
+#/var/lib/boinc-client/sched_reply_setiathome\.berkeley\.edu\.xml$ VarFile
+#/var/lib/boinc-client/sched_request_setiathome\.berkeley\.edu\.xml$ VarFile
+#/var/lib/boinc-client/slots/[[:digit:]]+$ VarDir
+#/var/lib/boinc-client/slots/[[:digit:]]+/\.*$ VarFile+ANF+ARF
+#/var/lib/boinc-client/statistics_setiathome\.berkeley\.edu\.xml$ VarFile

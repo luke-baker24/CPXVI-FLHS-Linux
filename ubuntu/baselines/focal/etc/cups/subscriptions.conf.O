@@ -1,0 +1,29 @@
+# Subscription configuration file for CUPS v2.3.1
+# Written by cupsd
+NextSubscriptionId 65
+<Subscription 60>
+Events printer-state-changed printer-restarted printer-shutdown printer-stopped printer-added printer-deleted job-state-changed job-created job-completed job-stopped
+Owner korra
+Recipient dbus://
+LeaseDuration 3600
+Interval 0
+ExpirationTime 1697996772
+NextEventId 1
+</Subscription>
+<Subscription 63>
+Events printer-changed
+Owner root
+LeaseDuration 86400
+Interval 60
+ExpirationTime 1698081149
+NextEventId 1
+</Subscription>
+<Subscription 64>
+Events all
+Owner anonymous
+Recipient dbus://
+LeaseDuration 86400
+Interval 0
+ExpirationTime 1698081149
+NextEventId 1
+</Subscription>

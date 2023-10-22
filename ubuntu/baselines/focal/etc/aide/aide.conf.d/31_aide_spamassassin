@@ -1,0 +1,6 @@
+/var/spool/spamassassin/bayes/(bayes_(journal|toks|seen)|auto-whitelist)$ VarFile
+/var/spool/spamassassin/bayes$ VarDir
+/@@{RUN}/spamd\.pid$ VarFile
+
+# enable this if you run automatic rule updates
+# !/var/lib/spamassassin/3\.002001/updates_spamassassin_org/[0-9][0-9]_[a-z]\.cf$

@@ -1,0 +1,9 @@
+/var/(lib|cache)/libvirt/qemu$ VarDir
+/@@{RUN}/libvirtd\.pid$ VarFile
+/@@{RUN}/libvirt/libvirt-sock(-ro)?$ VarFile
+/var/lib/libvirt/qemu/[-[:alnum:]]+\.monitor$ VarInode
+/var/lib/libvirt/qemu/(save|snapshot)$ VarDir
+/var/lib/libvirt$ VarDir
+/@@{RUNLOCK}/libvirt-guests$ VarDirInode
+/@@{RUN}/libvirt/qemu/[-[:alnum:]]+\.(pid|xml)$ VarFile
+/@@{RUN}/libvirt(/(qemu|uml-guest))?$ VarDirInode

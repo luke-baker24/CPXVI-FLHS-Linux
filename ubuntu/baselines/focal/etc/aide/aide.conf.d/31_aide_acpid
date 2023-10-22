@@ -1,0 +1,6 @@
+/var/log/acpid$ Log
+/var/log/acpid\.1$ LowLog
+/var/log/acpid\.2\.gz$ LoSerMemberLog
+/var/log/acpid\.3\.gz$ SerMemberLog
+/var/log/acpid\.4\.gz$ HiSerMemberLog
+/@@{RUN}/acpid\.(socket|pid)$ VarFile

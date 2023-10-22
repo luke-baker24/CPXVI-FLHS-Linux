@@ -1,0 +1,6 @@
+# always assume that we have udev
+# Making this any more paranoid would probably mean to implementing most
+# of udev. Please feel free to submit patches ;)
+/@@{DEVDOT}udev/queue\.bin$ RamdiskData-s
+/@@{DEVDOT}udev/ RamdiskData
+/@@{DEVDOT}udev$ VarDirInode

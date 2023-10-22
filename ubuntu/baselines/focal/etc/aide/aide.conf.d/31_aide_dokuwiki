@@ -1,0 +1,6 @@
+/var/lib/dokuwiki/data/cache/[0-9a-f]/[0-9a-f]{32}\.(feed|i|xhtml)$ VarFile
+/var/lib/dokuwiki/data/(changes\.log|(index|word)\.idx)$ VarFile
+/var/lib/dokuwiki/data/meta/([a-z]+\.indexed|_dokuwiki\.changes)$ VarFile
+/var/lib/dokuwiki/data/meta$ VarDir
+/var/lib/dokuwiki/data/pages/[a-z]+\.txt$ VarFile
+/var/lib/dokuwiki/data/(attic|cache|locks|pages)$ VarDir

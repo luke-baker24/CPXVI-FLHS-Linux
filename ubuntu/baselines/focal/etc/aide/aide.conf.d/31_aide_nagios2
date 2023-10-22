@@ -1,0 +1,10 @@
+/var/cache/nagios2/(objects\.cache|status\.dat)$ VarFile
+/var/lib/nagios2/(comments|retention)\.dat$ VarFile
+/var/lib/nagios2/rw/nagios\.cmd$ VarFile
+/var/lib/nagios2/rw$ VarDir
+/var/log/nagios2/nagios\.log$ LowLog
+/var/log/nagios2/archives/nagios-[01][0-9]-[0123][0-9]-@@{YEAR4D}-00\.log$ SerMemberDELog
+/@@{RUN}/nagios2/nagios2\.pid$ VarFile
+/var/(cache|lib|log)/nagios2$ VarDir
+/@@{RUN}/nagios2$ VarDirInode
+/var/log/nagios2/archives$ VarDir

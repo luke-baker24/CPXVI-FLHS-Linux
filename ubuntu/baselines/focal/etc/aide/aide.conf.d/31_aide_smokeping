@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -d "/var/lib/smokeping" ]; then
+  find /var/lib/smokeping -type f -name '*.rrd' | \
+       sed 's/^\(.*\)/\1$ VarFile/'
+fi
+if [ -d "/var/www/smokeping" ]; then
+  find /var/www/smokeping -type f -name '*.png' | \
+       sed 's/^\(.*\)/\1$ VarFile/'
+  find /var/www/smokeping -type f -name '*.maxhight' | \
+       sed 's/^\(.*\)/\1$ VarFile/'
+fi
+
+cat <<EOF
+/@@{RUN}/smokeping/smokeping\.pid$ VarFile
+/@@{RUN}/smokeping$ VarDirInode
+!/tmp/speedy\.6\.21\.F$
+EOF

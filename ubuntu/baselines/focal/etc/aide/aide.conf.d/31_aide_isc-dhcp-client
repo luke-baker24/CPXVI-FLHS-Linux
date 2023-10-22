@@ -1,0 +1,5 @@
+# @@define ISCDHCLIENTIFACE eth0
+@@ifdef ISCDHCLIENTIFACE
+/@@{RUN}/dhclient\.@@{ISCDHCLIENTIFACE}\.pid$ VarFile
+/var/lib/dhcp/dhclient\.@@{ISCDHCLIENTIFACE}\.leases$ VarFile
+@@endif

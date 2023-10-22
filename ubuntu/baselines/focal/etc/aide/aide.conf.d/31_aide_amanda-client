@@ -1,0 +1,9 @@
+@@define AMANDALOG var/log/amanda
+
+/var/lib/dumpdates$ VarFile
+!/@@{AMANDALOG}/amandad/amandad\.@@{YEAR4D}[0-9]{10}\.debug$
+/@@{AMANDALOG}/(amandad|client)$ VarDir
+@@ifdef AMANDABACKUPSET
+/@@{AMANDALOG}/client/@@{AMANDABACKUPSET}$ VarDir
+@@endif
+!/@@{AMANDALOG}/client/[^/]+/(sendsize|killpgrp|sendbackup|selfcheck)\.@@{YEAR4D}[0-9]{10}\.debug$

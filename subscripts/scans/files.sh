@@ -19,3 +19,6 @@ logs_directory="$1/../../logs"
 
 #Files scan
 aide_scan general
+
+#/etc/ scan
+meld /etc/ $1/etc/

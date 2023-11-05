@@ -102,9 +102,9 @@ Faith Lutheran Ubuntu Security Helper (2.0)' 16 42
 # Scans loop                                                                                   #
 ################################################################################################
 
-rm -rf logs
-
 mkdir logs
+
+touch logs/output.log
 
 while true; do
     CHOICE=$(
@@ -113,6 +113,7 @@ while true; do
             "2)" "Package/snap scan." \
             "3)" "File scan." \
             "4)" "Home directories scan." \
+            "5)" "Hail Mary scans." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -128,6 +129,9 @@ while true; do
         ;;
         "4)")
             ./subscripts/scans/homedirs.sh "$(pwd)/baselines/$VERSION"
+        ;;
+        "5)")
+            ./subscripts/scans/blackmagic.sh "$(pwd)/baselines/$VERSION"
         ;;
         "X)")
             break
@@ -146,7 +150,7 @@ while true; do
             "2)" "Firefox settings." \
             "3)" "Configure UFW." \
             "4)" "Secure kernel sysctl settings." \
-            "5)" "Secure gsettings." \
+            "5)" "File permissions." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -164,7 +168,7 @@ while true; do
             ./subscripts/policies/kernel.sh "$(pwd)/baselines/$VERSION"
         ;;
         "5)")
-            ./subscripts/policies/gsettings.sh "$(pwd)/baselines/$VERSION"
+            ./subscripts/policies/fileperms.sh "$(pwd)/baselines/$VERSION"
         ;;
         "X)")
             break

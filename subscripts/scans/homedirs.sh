@@ -24,18 +24,19 @@ do
         for prohib_file in $(find . -maxdepth 2 -type f | grep -v '^./.profile$' \
             | grep -v '^./.bashrc$'  | grep -v '^./.config/user-dirs.dirs$' | grep -v '^./.config/user-dirs.locale$' \
             | grep -v '^./.face$' | grep -v '^./.bash_logout$' | tr " " "_"); do
-            output_log "FIL" "$prohib_file is a found prohibited file in $user_home_path"
+            output_log "FIL" "$user_home_path/$prohib_file  is a found abnormal file"
         done
 
         for prohib_file in $(find . -maxdepth 2 -type l | grep -v "^./.bash_history$" | tr " " "_"); do
-            output_log "LNK" "$prohib_file is a found prohibited symlink in $user_home_path"
+            output_log "LNK" "$user_home_path/$prohib_file is a found abnormal symlink"
         done
 
-        for prohib_file in $(find . -maxdepth 2 -type d | grep -v "^./$"  | grep -v "^./Documents$" | grep -v "^./Music$" | grep -v "^./Public$" | grep -v "^./snap$" \
+        for prohib_file in $(find . -maxdepth 2 -type d | grep -v "^.$" | grep -v "^./.config$" | grep -v "^./Documents$" | grep -v "^./Music$" | grep -v "^./Public$" | grep -v "^./snap$" \
             | grep -v "^./Videos$" | grep -v "^./Desktop$" | grep -v "^./Downloads$" | grep -v "^./Pictures$" | grep -v "^./Templates$" | tr " " "_"); do
-            output_log "DIR" "$prohib_file is a found prohibited directory in $user_home_path. Consider investigating individually."
+            output_log "DIR" "$user_home_path/$prohib_file is a found abnormal directory - consider investigating individually"
         done
     fi
 done
 
 cd $old_dir
+

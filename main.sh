@@ -106,6 +106,8 @@ mkdir logs
 
 touch logs/output.log
 
+chmod 666 logs/output.log
+
 while true; do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \

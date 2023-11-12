@@ -1,9 +1,14 @@
+#!/bin/bash
+source ./subscripts/source/output_log.sh
+
 #Remember to purge user's home directories if they were deleted before running this
 
 UID_MIN=$(awk '/^UID_MIN/ {print $2}' /etc/login.defs)
 UID_MAX=$(awk '/^UID_MAX/ {print $2}' /etc/login.defs)
 
 real_users=$(awk -F':' -v "min=$UID_MIN" -v "max=$UID_MAX" '{ if ( $3 >= min && $3 <= max ) print $0}' /etc/passwd | cut -d ":" -f 1)
+
+old_dir=$(pwd)
 
 for real_user in $real_users
 do
@@ -13,7 +18,24 @@ do
     user_home_path=$(echo $passwd_entry | cut -d ":" -f 6)
 
     #Perform home path checks
-    if [[ $user_home_path ]]; then
-        meld $user_home_path $1/home/
+    if [[ $user_home_path ]]; then 
+        cd $user_home_path
+
+        for prohib_file in $(find . -maxdepth 2 -type f | grep -v '^./.profile$' \
+            | grep -v '^./.bashrc$'  | grep -v '^./.config/user-dirs.dirs$' | grep -v '^./.config/user-dirs.locale$' \
+            | grep -v '^./.face$' | grep -v '^./.bash_logout$' | tr " " "_"); do
+            output_log "FIL" "$prohib_file is a found prohibited file in $user_home_path"
+        done
+
+        for prohib_file in $(find . -maxdepth 2 -type l | grep -v "^./.bash_history$" | tr " " "_"); do
+            output_log "LNK" "$prohib_file is a found prohibited symlink in $user_home_path"
+        done
+
+        for prohib_file in $(find . -maxdepth 2 -type d | grep -v "^./$"  | grep -v "^./Documents$" | grep -v "^./Music$" | grep -v "^./Public$" | grep -v "^./snap$" \
+            | grep -v "^./Videos$" | grep -v "^./Desktop$" | grep -v "^./Downloads$" | grep -v "^./Pictures$" | grep -v "^./Templates$" | tr " " "_"); do
+            output_log "DIR" "$prohib_file is a found prohibited directory in $user_home_path. Consider investigating individually."
+        done
     fi
 done
+
+cd $old_dir

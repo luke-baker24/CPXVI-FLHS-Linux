@@ -7,14 +7,14 @@ deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted
 
 ## Major bug fix updates produced after the final release of the
 ## distribution.
-# deb-src http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted
 
 ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## team. Also, please note that software in universe WILL NOT receive any
 ## review or updates from the Ubuntu security team.
 deb http://us.archive.ubuntu.com/ubuntu/ focal universe
 # deb-src http://us.archive.ubuntu.com/ubuntu/ focal universe
-# deb-src http://us.archive.ubuntu.com/ubuntu/ focal-updates universe
+deb http://us.archive.ubuntu.com/ubuntu/ focal-updates universe
 
 ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
 ## team, and may not be under a free licence. Please satisfy yourself as to 
@@ -38,7 +38,7 @@ deb http://us.archive.ubuntu.com/ubuntu/ focal universe
 # deb http://archive.canonical.com/ubuntu focal partner
 # deb-src http://archive.canonical.com/ubuntu focal partner
 
-deb http://security.ubuntu.com/ubuntu focal-security restricted main
+deb http://security.ubuntu.com/ubuntu focal-security main restricted
 # deb-src http://security.ubuntu.com/ubuntu focal-security main restricted
 deb http://security.ubuntu.com/ubuntu focal-security universe
 # deb-src http://security.ubuntu.com/ubuntu focal-security universe
@@ -49,5 +49,5 @@ deb http://security.ubuntu.com/ubuntu focal-security universe
 # entries were disabled at the end of the installation process.
 # For information about how to configure apt package sources,
 # see the sources.list(5) manual.
-deb http://us.archive.ubuntu.com/ubuntu/ focal-updates restricted main universe
-deb http://us.archive.ubuntu.com/ubuntu/ focal-backports restricted main universe
+# deb http://us.archive.ubuntu.com/ubuntu/ focal-updates restricted main universe
+# deb http://us.archive.ubuntu.com/ubuntu/ focal-backports restricted main universe

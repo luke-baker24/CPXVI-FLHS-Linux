@@ -86,6 +86,15 @@ else
     apt install meld
 fi
 
+#Changing the colors cause everything's gotta be pretty
+export NEWT_COLORS='
+window=blue,white
+border=black,white
+textbox=black,white
+button=black,white
+'
+
+
 whiptail --msgbox \
 '
               Welcome To
@@ -111,66 +120,90 @@ chmod 666 logs/output.log
 while true; do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
-            "1)" "User scan." \
-            "2)" "Package/snap scan." \
-            "3)" "File scan." \
-            "4)" "Home directories scan." \
-            "5)" "Hail Mary scans." \
+            "1)" "Scans." \
+            "2)" "Policies." \
+            "3)" "Critical service configurations." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
     case $CHOICE in
         "1)")
-            ./subscripts/scans/users.sh "$(pwd)/baselines/$VERSION"
+            while true; do
+                SUBCHOICE=$(
+                    whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
+                        "1)" "User scan." \
+                        "2)" "Package/snap scan." \
+                        "3)" "Home directories scan." \
+                        "X)" "Exit." 3>&2 2>&1 1>&3	
+                )
+
+                case $SUBCHOICE in
+                    "1)")
+                        ./subscripts/scans/users.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "2)")
+                        ./subscripts/scans/packages.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "3)")
+                        ./subscripts/scans/homedirs.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "X)")
+                        break
+                    ;;
+                esac
+            done
         ;;
         "2)")
-            ./subscripts/scans/packages.sh "$(pwd)/baselines/$VERSION"
+            while true; do
+                CHOICE=$(
+                    whiptail --title "What policies do you want to enforce?" --menu "" 18 50 10 \
+                        "1)" "Apt security." \
+                        "2)" "Firefox settings." \
+                        "3)" "Configure UFW." \
+                        "4)" "Secure kernel sysctl settings." \
+                        "5)" "File permissions." \
+                        "X)" "Exit." 3>&2 2>&1 1>&3	
+                )
+
+                case $CHOICE in
+                    "1)")
+                        ./subscripts/policies/apt.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "2)")
+                        ./subscripts/policies/firefox.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "3)")
+                        ./subscripts/policies/firewall.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "4)")
+                        ./subscripts/policies/kernel.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "5)")
+                        ./subscripts/policies/fileperms.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "X)")
+                        break
+                    ;;
+                esac
+            done
         ;;
         "3)")
-            ./subscripts/scans/files.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "4)")
-            ./subscripts/scans/homedirs.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "5)")
-            ./subscripts/scans/blackmagic.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "X)")
-            break
-        ;;
-    esac
-done
+            while true; do
+                CHOICE=$(
+                    whiptail --title "What configs do you want to diff?" --menu "" 18 50 10 \
+                        "1)" "sshd" \
+                        "X)" "Exit." 3>&2 2>&1 1>&3	
+                )
 
-################################################################################################
-# Policies loop                                                                                #
-################################################################################################
-
-while true; do
-    CHOICE=$(
-        whiptail --title "What policies do you want to enforce?" --menu "" 18 50 10 \
-            "1)" "Apt security." \
-            "2)" "Firefox settings." \
-            "3)" "Configure UFW." \
-            "4)" "Secure kernel sysctl settings." \
-            "5)" "File permissions." \
-            "X)" "Exit." 3>&2 2>&1 1>&3	
-    )
-
-    case $CHOICE in
-        "1)")
-            ./subscripts/policies/apt.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "2)")
-            ./subscripts/policies/firefox.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "3)")
-            ./subscripts/policies/firewall.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "4)")
-            ./subscripts/policies/kernel.sh "$(pwd)/baselines/$VERSION"
-        ;;
-        "5)")
-            ./subscripts/policies/fileperms.sh "$(pwd)/baselines/$VERSION"
+                case $CHOICE in
+                    "1)")
+                        #pass
+                    ;;
+                    "X)")
+                        break
+                    ;;
+                esac
+            done
         ;;
         "X)")
             break

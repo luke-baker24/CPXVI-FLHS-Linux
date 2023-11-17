@@ -24,5 +24,15 @@ do
     output_log "SNP" "$new_package is an unauthorized snap"
 done
 
+#Unnecessary service scan
+for service in $(service --status-all)
+do
+    service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
+
+    if [ $service_name == "bluetooth*" ] || [ $service_name == "cups*" ] || [ $service_name == "avahi*" ]; then
+        output_log "SVC" "$service_name is an unnecessary service. Disable it unless absolutely necesary."
+    fi
+done
+
 #Clear the temp directory
 rm -r temp

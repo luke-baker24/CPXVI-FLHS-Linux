@@ -68,24 +68,6 @@ else
     apt install whiptail
 fi
 
-#Verify aide is installed on the system
-if [[ $(which aide) ]]; then
-    echo "Aide installed"
-else
-    echo "Aide is not installed."
-
-    apt install aide
-fi
-
-#Verify meld is installed on the system
-if [[ $(which meld) ]]; then
-    echo "Meld installed"
-else
-    echo "Meld is not installed."
-
-    apt install meld
-fi
-
 whiptail --msgbox \
 '
               Welcome To

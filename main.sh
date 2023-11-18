@@ -68,24 +68,6 @@ else
     apt install whiptail
 fi
 
-#Verify aide is installed on the system
-if [[ $(which aide) ]]; then
-    echo "Aide installed"
-else
-    echo "Aide is not installed."
-
-    apt install aide
-fi
-
-#Verify meld is installed on the system
-if [[ $(which meld) ]]; then
-    echo "Meld installed"
-else
-    echo "Meld is not installed."
-
-    apt install meld
-fi
-
 #Changing the colors cause everything's gotta be pretty
 export NEWT_COLORS='
 window=blue,white
@@ -93,7 +75,6 @@ border=black,white
 textbox=black,white
 button=black,white
 '
-
 
 whiptail --msgbox \
 '

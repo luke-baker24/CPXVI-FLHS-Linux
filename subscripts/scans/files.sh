@@ -1,24 +1,30 @@
 #!/bin/bash
 
+#Verify aide is installed on the system
+if [[ $(which aide) ]]; then
+    echo "Aide installed"
+else
+    echo "Aide is not installed."
+
+    apt install aide
+fi
+
 function aide_scan()
 {
     cp $aide_directory/$1.conf /var/lib/aide/aide.conf
 
     cp $aide_directory/$1.db /var/lib/aide/aide.db
 
+    echo "report_url=$2/aide.log" >> /var/lib/aide/aide.db
+
     aide --check --config=/var/lib/aide/aide.conf >> $logs_directory/policy-aide.log
 }
-
-#Install aide if it's not yet installed
-if ! [[ $(which aide) ]]; then
-    apt install aide
-fi
 
 aide_directory="$1/../../aide"
 logs_directory="$1/../../logs"
 
-#Files scan
-aide_scan general
+#Run aide scan
+aide_scan general $logs_directory
 
-#/etc/ scan
-meld /etc/ $1/etc/
+#Parse aide results
+#???

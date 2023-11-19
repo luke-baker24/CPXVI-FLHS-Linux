@@ -104,6 +104,7 @@ while true; do
             "1)" "Scans." \
             "2)" "Policies." \
             "3)" "Critical service configurations." \
+            "4)" "Browser configurations." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -173,12 +174,43 @@ while true; do
                 CHOICE=$(
                     whiptail --title "What configs do you want to diff?" --menu "" 18 50 10 \
                         "1)" "sshd" \
+                        "2)" "vsftpd" \
+                        "3)" "apache" \
+                        "4)" "openvpn" \
+                        "5)" "nginx" \
+                        "6)" "postfix" \
+                        "7)" "bind9" \
+                        "8)" "mysql" \
+                        "9)" "samba" \
+                        "10)" "php" \
+                        "X)" "Exit." 3>&2 2>&1 1>&3	
+                )
+
+                #case $CHOICE in
+                #    "1)")
+                #        #pass
+                #    ;;
+                #    "X)")
+                #        break
+                #    ;;
+                #esac
+            done
+        ;;
+        "4)")
+            while true; do
+                CHOICE=$(
+                    whiptail --title "What browsers do you want to harden?" --menu "" 18 50 10 \
+                        "1)" "Firefox" \
+                        "2)" "Chromium" \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 
                 case $CHOICE in
                     "1)")
-                        #pass
+                        ./subscripts/policies/firefox.sh "$(pwd)/baselines/$VERSION"
+                    ;;
+                    "2)")
+                        ./subscripts/policies/chromium.sh "$(pwd)/baselines/$VERSION"
                     ;;
                     "X)")
                         break

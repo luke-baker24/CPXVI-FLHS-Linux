@@ -49,7 +49,7 @@ cat policy-aide.log | grep -E "^.{18}\: .*$" | grep -E "^d" | awk 'BEGIN { FS = 
 
 #Get added files
 #first command img in discord
-for added_file in $(cat policy-aide.log | grep -E "^.{18}\: .*$" | grep -E "^[^d]+++++++++++++++++" | awk 'BEGIN { FS = ": " } ; {print $2}' | grep -E $(cat policy-aide.log | grep -E "^.{18}\: .*$" | grep -E "^d" | awk 'BEGIN { FS = ": " } ; {print $2}' | tr '\n' '|')); do
+for added_file in $(cat policy-aide.log | grep -E "^.{18}\: .*$" | grep -E "^[^d][\+]{17}" | awk 'BEGIN { FS = ": " } ; {print $2}' | grep -E $(cat policy-aide.log | grep -E "^.{18}\: .*$" | grep -E "^d" | awk 'BEGIN { FS = ": " } ; {print $2}' | tr '\n' '|')); do
     output_log "FIL" "$added_file has been added"
 done
 

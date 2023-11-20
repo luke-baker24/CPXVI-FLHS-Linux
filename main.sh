@@ -116,7 +116,7 @@ while true; do
                         "1)" "User scan." \
                         "2)" "Package/snap scan." \
                         "3)" "Home directories scan." \
-                        "4)" "\/usr files scan." \
+                        "4)" "/usr files scan." \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 

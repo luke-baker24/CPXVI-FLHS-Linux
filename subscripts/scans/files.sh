@@ -49,13 +49,20 @@ aide_scan general $logs_directory
 
 #Get added files
 #first command img in discord
-for added_file in $(cat $logs_directory/policy-aide.log | grep -E "^[^d][\+]{17}" | awk 'BEGIN { FS = ": " } ; {print $2}' | grep -vE $(cat $logs_directory/policy-aide.log | grep -E "^d.{17}\: .*$" | awk 'BEGIN { FS = ": " } ; {print $2}' | tr '\n' '|' | uniq)); do
+
+all_directories=$(cat $logs_directory/policy-aide.log | grep -E "^[^d][\+]{17}" | awk 'BEGIN { FS = ": " } ; {print $2}' | grep -vE $(cat $logs_directory/policy-aide.log | grep -E "^d.{17}\: .*$" | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq))
+
+for directory in $all_directories; do
+    all_directories="$(echo $all_directories | grep -vE "^$directory.+")"
+done
+
+for added_file in $(echo $pared_directories | tr '\n' '|'); do
     output_log "FIL" "$added_file has been added"
 done
 
 #Get permissions modified
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{4}p.{13}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq); do
-    perms_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Perm')
+    perms_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Perm' | uniq)
 
     old_perms=$(echo $perms_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
     new_perms=$(echo $perms_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)
@@ -64,7 +71,7 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{4}p.{13}
 done
 
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{5}u.{12}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq); do
-    uid_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Uid')
+    uid_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Uid' | uniq)
 
     old_uid=$(echo $uid_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
     new_uid=$(echo $uid_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)
@@ -76,7 +83,7 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{5}u.{12}
 done
 
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{6}g.{11}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq); do
-    uid_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Gid')
+    uid_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Gid' | uniq)
 
     old_uid=$(echo $uid_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
     new_uid=$(echo $uid_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)

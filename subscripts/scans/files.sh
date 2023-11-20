@@ -50,13 +50,15 @@ aide_scan general $logs_directory
 #Get added files
 #first command img in discord
 
-all_directories=$(cat $logs_directory/policy-aide.log | grep -E "^[^d][\+]{17}" | awk 'BEGIN { FS = ": " } ; {print $2}' | grep -vE $(cat $logs_directory/policy-aide.log | grep -E "^d.{17}\: .*$" | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq))
+added_directories=$(cat $logs_directory/policy-aide.log | grep -E "^d[\+]{17}" | awk 'BEGIN { FS = ": " } ; {print $2}')
 
-for directory in $all_directories; do
-    all_directories="$(echo $all_directories | grep -vE "^$directory.+")"
+for directory in $added_directories; do
+    added_directories="$(echo $added_directories | grep -vE "^$directory.+$")"
 done
 
-for added_file in $(echo $pared_directories | tr '\n' '|'); do
+#$(cat $logs_directory/policy-aide.log | grep -E "^[^d].{17}\: .*$" | awk 'BEGIN { FS = ": " } ; {print $2}' | uniq)
+
+for added_file in $(cat $logs_directory/policy-aide.log | grep -E "^[^d][\+]{17}\: .*$" | grep -vE $(echo "$added_directories" | tr '\n' '|')); do
     output_log "FIL" "$added_file has been added"
 done
 

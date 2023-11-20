@@ -88,8 +88,8 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{6}g.{11}
     old_uid=$(echo $uid_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
     new_uid=$(echo $uid_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)
 
-    old_user=$(id -nu $old_uid 2> /dev/null) 
-    new_user=$(id -nu $new_uid 2> /dev/null)
+    old_user=$(getent group $old_uid | cut -d: -f1 2> /dev/null) 
+    new_user=$(getent group $new_uid | cut -d: -f1 2> /dev/null)
 
     output_log "PRM" "$changed_file has changed group ownership from $old_uid $old_user to $new_uid $new_user"
 done

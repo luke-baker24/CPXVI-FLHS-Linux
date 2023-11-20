@@ -2,19 +2,21 @@
 
 mkdir new-baselines
 
+#Verify aide is installed on the system
+if [[ $(which aide) ]]; then
+    echo "Aide installed"
+else
+    echo "Aide is not installed."
+
+    apt install aide
+fi
+
 #Files db
 cp ../aide/general.conf /var/lib/aide/aide.conf
 
 aide --init --config=/var/lib/aide/aide.conf
 
 cp /var/lib/aide/aide.db.new ./new-baselines/general.db
-
-#Etc db
-cp ../aide/polcheck.conf /var/lib/aide/aide.conf
-
-aide --init --config=/var/lib/aide/aide.conf
-
-cp /var/lib/aide/aide.db.new ./new-baselines/polcheck.db
 
 #Etc copied
 cp -r /etc/ ./new-baselines/etc/

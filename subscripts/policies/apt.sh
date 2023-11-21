@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Clean software archives
 apt clean
 apt autoclean
@@ -7,6 +9,3 @@ sudo apt install unattended-upgrades
 
 systemctl restart unattended-upgrades
 systemctl enable unattended-upgrades
-
-sudo apt update
-sudo apt full-upgrade -y

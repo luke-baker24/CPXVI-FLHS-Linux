@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Function taken from https://askubuntu.com/questions/313483/how-do-i-change-firefoxs-aboutconfig-from-a-shell-script
 ff_set()
 {

@@ -134,9 +134,9 @@ do
     group_id=$(echo $passwd_entry | cut -d ":" -f 4)
 
     #Perform GID checks
-    if [ "$group_id" == "0" ] && [ "$real_user" != "root" ]
+    if [ "$group_id" == "0" ] && [ "$group_id" != "root" ]
     then
-        output_log "USR" "User $real_user has GID 0"
+        output_log "USR" "User $group_id has GID 0"
     fi
 
 
@@ -148,7 +148,6 @@ do
     then
         output_log "USR" "User $real_user home path is not located in /home"
     fi
-
 
     #The seventh parameter is the shell of the user
     user_shell=$(echo $passwd_entry | cut -d ":" -f 7 | sed 's/[[:space:]]*//g')
@@ -170,6 +169,20 @@ do
     if [ ${#users_password} -le "1" ]
     then
         output_log "USR" "$real_user does not have a password"
+    fi
+
+    #min, max, warn - 7, 30, 14
+
+    if ! [[ $(getent shadow $real_user | cut -d ":" -f 4) == "7" ]]; then
+        output_log "USR" "$real_user has an insecure minimum password age. Remedy with chage -m 7"
+    fi
+
+    if ! [[ $(getent shadow $real_user | cut -d ":" -f 5) == "30" ]]; then
+        output_log "USR" "$real_user has an insecure maximum password age. Remedy with chage -M 30"
+    fi
+
+    if ! [[ $(getent shadow $real_user | cut -d ":" -f 6) == "14" ]]; then
+        output_log "USR" "$real_user has an insecure password warn age. Remedy with chage -W 14"
     fi
 done
 

@@ -27,10 +27,11 @@ done
 #Unnecessary service scan
 for service in $(service --status-all)
 do
-    service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
+    #service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
+    echo $service
 
-    if [ $service_name == "bluetooth*" ] || [ $service_name == "cups*" ] || [ $service_name == "avahi*" ]; then
-        output_log "SVC" "$service_name is an unnecessary service. Disable it unless absolutely necesary."
+    if [[ $service =~ "^bluetooth.*$" ]] || [[ $service =~ "^cups.*$" ]] || [[ $service =~ "^avahi.*$" ]]; then
+        output_log "SVC" "$service is an unnecessary service. Disable it unless absolutely necesary."
     fi
 done
 

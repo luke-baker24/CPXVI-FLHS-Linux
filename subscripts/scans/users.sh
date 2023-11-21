@@ -183,13 +183,13 @@ do
     admins_password=$(echo $admin_passwords_raw | cut -d "," -f $index)
     
     if [ ${#admins_password} -lt 10 ]; then
-        output_log "USR" "$admin's password failed complexity checks"
+        output_log "USR" "$admin's password ON README failed complexity checks"
     elif [[ $admins_password != *[A-Z]* ]]; then
-        output_log "USR" "$admin's password failed complexity checks"
+        output_log "USR" "$admin's password ON README failed complexity checks"
     elif [[ $admins_password != *[a-z]* ]]; then
-        output_log "USR" "$admin's password failed complexity checks"
+        output_log "USR" "$admin's password ON README failed complexity checks"
     elif [[ $admins_password != *[0-9]* ]]; then
-        output_log "USR" "$admin's password failed complexity checks"
+        output_log "USR" "$admin's password ON README failed complexity checks"
     fi
 
     ((index+=1))

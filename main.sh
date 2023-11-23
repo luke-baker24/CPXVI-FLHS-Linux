@@ -102,9 +102,10 @@ while true; do
     CHOICE=$(
         whiptail --title "What scans do you want to run?" --menu "" 18 50 10 \
             "1)" "Scans." \
-            "2)" "Policies." \
+            "2)" "Auto-policies." \
             "3)" "Critical service configurations." \
             "4)" "Browser configurations." \
+            "5)" "Policies." \
             "X)" "Exit." 3>&2 2>&1 1>&3	
     )
 
@@ -117,6 +118,7 @@ while true; do
                         "2)" "Package/snap scan." \
                         "3)" "Home directories scan." \
                         "4)" "/usr files scan." \
+                        "4)" "/etc baseline scan." \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 
@@ -133,6 +135,9 @@ while true; do
                     "4)")
                         ./subscripts/scans/files.sh "$(pwd)/baselines/$VERSION"
                     ;;
+                    "5)")
+                        ./subscripts/scans/etcscan.sh "$(pwd)/baselines/$VERSION"
+                    ;;
                     "X)")
                         break
                     ;;
@@ -144,28 +149,24 @@ while true; do
                 CHOICE=$(
                     whiptail --title "What policies do you want to enforce?" --menu "" 18 50 10 \
                         "1)" "Apt security." \
-                        "2)" "Firefox settings." \
+                        "2)" "Secure gnome." \
                         "3)" "Configure UFW." \
                         "4)" "Secure kernel sysctl settings." \
-                        "5)" "File permissions." \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 
                 case $CHOICE in
                     "1)")
-                        ./subscripts/policies/apt.sh "$(pwd)/baselines/$VERSION"
+                        ./subscripts/autopols/apt.sh "$(pwd)/baselines/$VERSION"
                     ;;
                     "2)")
-                        ./subscripts/policies/firefox.sh "$(pwd)/baselines/$VERSION"
+                        ./subscripts/autopols/gsettings.sh "$(pwd)/baselines/$VERSION"
                     ;;
                     "3)")
-                        ./subscripts/policies/firewall.sh "$(pwd)/baselines/$VERSION"
+                        ./subscripts/autopols/firewall.sh "$(pwd)/baselines/$VERSION"
                     ;;
                     "4)")
-                        ./subscripts/policies/kernel.sh "$(pwd)/baselines/$VERSION"
-                    ;;
-                    "5)")
-                        ./subscripts/policies/fileperms.sh "$(pwd)/baselines/$VERSION"
+                        ./subscripts/autopols/kernel.sh "$(pwd)/baselines/$VERSION"
                     ;;
                     "X)")
                         break
@@ -174,30 +175,66 @@ while true; do
             done
         ;;
         "3)")
+            #Verify meld is installed on the system
+            if [[ $(which meld) ]]; then
+                echo "Meld installed"
+            else
+                echo "Meld is not installed."
+
+                apt install meld
+            fi
+
             while true; do
                 CHOICE=$(
                     whiptail --title "What configs do you want to diff?" --menu "" 18 50 10 \
                         "1)" "sshd" \
                         "2)" "vsftpd" \
                         "3)" "apache" \
-                        "4)" "openvpn" \
+                        "4)" "dovecot" \
                         "5)" "nginx" \
                         "6)" "postfix" \
-                        "7)" "bind9" \
+                        "7)" "squid" \
                         "8)" "mysql" \
                         "9)" "samba" \
-                        "10)" "php" \
+                        "10)" "postgresql" \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 
-                #case $CHOICE in
-                #    "1)")
-                #        #pass
-                #    ;;
-                #    "X)")
-                #        break
-                #    ;;
-                #esac
+                case $CHOICE in
+                    "1)")
+                        meld "$(pwd)/baselines/services/ssh" /etc/ssh
+                    ;;
+                    "2)")
+                        meld "$(pwd)/baselines/services/vsftpd.conf" /etc/vsftpd.conf
+                    ;;
+                    "3)")
+                        meld "$(pwd)/baselines/services/apache2" /etc/apache2
+                    ;;
+                    "4)")
+                        meld "$(pwd)/baselines/services/dovecot" /etc/dovecot
+                    ;;
+                    "5)")
+                        meld "$(pwd)/baselines/services/nginx" /etc/nginx
+                    ;;
+                    "6)")
+                        meld "$(pwd)/baselines/services/postfix" /etc/postfix
+                    ;;
+                    "7)")
+                        meld "$(pwd)/baselines/services/squid" /etc/squid
+                    ;;
+                    "8)")
+                        meld "$(pwd)/baselines/services/mysql" /etc/mysql
+                    ;;
+                    "9)")
+                        meld "$(pwd)/baselines/services/samba" /etc/samba
+                    ;;
+                    "10)")
+                        meld "$(pwd)/baselines/services/postgresql" /etc/postgresql
+                    ;;
+                    "X)")
+                        break
+                    ;;
+                esac
             done
         ;;
         "4)")

@@ -1,2 +1,0 @@
-/@@{RUN}/nagios/nrpe\.pid$ VarFile
-/@@{RUN}/nagios$ VarDirInode

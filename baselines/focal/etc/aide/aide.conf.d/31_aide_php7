@@ -1,3 +1,0 @@
-/var/lib/php/sessions$ VarDir
-/var/lib/php/sessions/sess_[0-9a-z]{26}$ VarFile+ANF+ARF
-/var/lib/php/sessions/sess_[0-9a-z]{32}$ VarFile+ANF+ARF

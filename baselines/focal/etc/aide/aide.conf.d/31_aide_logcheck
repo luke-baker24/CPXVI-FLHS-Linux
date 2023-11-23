@@ -1,3 +1,0 @@
-/var/lib/logcheck/offset\.var\.log\.(syslog|auth\.log)$ VarFile
-/var/lib/logcheck$ VarDir
-/@@{RUNLOCK}/logcheck$ VarDirInode

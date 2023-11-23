@@ -259,6 +259,60 @@ while true; do
                 esac
             done
         ;;
+        "5)")
+            while true; do
+                CHOICE=$(
+                    whiptail --title "What policy folders do you want to diff?" --menu "" 18 50 10 \
+                        "1)" "/etc/pam.d/" \
+                        "2)" "/etc/login.defs" \
+                        "3)" "/etc/apt/" \
+                        "4)" "/etc/security/" \
+                        "5)" "/etc/gdm3/" \
+                        "6)" "/etc/grub.d/" \
+                        "7)" "/etc/polkit-1/" \
+                        "8)" "/etc/sudoers" \
+                        "9)" "/etc/sysctl.conf" \
+                        "10)" "/etc/ufw" \
+                        "X)" "Exit." 3>&2 2>&1 1>&3	
+                )
+
+                case $CHOICE in
+                    "1)")
+                        meld "$(pwd)/baselines/$VERSION/pam.d" /etc/pam.d
+                    ;;
+                    "2)")
+                        meld "$(pwd)/baselines/$VERSION/login.defs" /etc/login.defs
+                    ;;
+                    "3)")
+                        meld "$(pwd)/baselines/$VERSION/apt" /etc/apt
+                    ;;
+                    "4)")
+                        meld "$(pwd)/baselines/$VERSION/apt" /etc/apt
+                    ;;
+                    "5)")
+                        meld "$(pwd)/baselines/$VERSION/security" /etc/gdm3
+                    ;;
+                    "6)")
+                        meld "$(pwd)/baselines/$VERSION/grub.d" /etc/grub.d
+                    ;;
+                    "7)")
+                        meld "$(pwd)/baselines/$VERSION/polkit-1" /etc/polkit-1
+                    ;;
+                    "8)")
+                        meld "$(pwd)/baselines/$VERSION/sudoers" /etc/sudoers
+                    ;;
+                    "9)")
+                        meld "$(pwd)/baselines/$VERSION/sysctl.conf" /etc/sysctl.conf
+                    ;;
+                    "10)")
+                        meld "$(pwd)/baselines/$VERSION/ufw" /etc/ufw
+                    ;;
+                    "X)")
+                        break
+                    ;;
+                esac
+            done
+        ;;
         "X)")
             break
         ;;

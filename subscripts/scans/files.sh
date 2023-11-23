@@ -20,7 +20,7 @@ else
     apt install aide
 fi
 
-aide_directory="$1/../../aide"
+aide_directory="$1/"
 logs_directory="$1/../../logs"
 
 function aide_scan()

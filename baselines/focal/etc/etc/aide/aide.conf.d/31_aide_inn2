@@ -1,0 +1,25 @@
+@@define NEWSLOGS (errlog|expire\.log|news(\.crit|\.err|\.notice)?|rc\.news|sendsys\.log|unwanted\.log|inn_status\.html|innfeed\.status|expire\.(lastlowmark|list))
+@@define OLDLOGS (active|errlog|expire\.log|news(\.crit|\.err|\.notice)?|sendsys\.log|unwanted\.log)
+
+!/var/lib/news/history(\.(dir|hash|index))?$
+/var/lib/news/(active(\.old)?|newsgroups|\.news\.daily)$ VarFile
+
+!/var/spool/news/articles(/[-a-z0-9+]+)+$
+/var/spool/news/overview/group\.index$ VarFile
+!/var/spool/news/overview(/[a-z0-9])+/[-\.a-z0-9+]+\.(IDX|DAT)$
+/var/spool/news/overview(/[a-z0-9])+$ VarDir
+!/var/spool/news/articles/control/(newgroup|checkgroups|rmgroup)/[0-9]*$
+/var/spool/news/innfeed/@@{INN2_INNFEED_OUTFEEDS}\.(lock|output|input)$ VarFile
+!/var/spool/news/innfeed/innfeed-dropped\.A[0-9]{6}$
+/var/spool/news/innfeed$ VarDir
+/var/spool/news/incoming(/tmp)?$ VarDir
+
+/@@{RUN}/news/(control|(innd|innfeed|innwatch)\.pid|innwatch\.time|LOCK\.innwatch|nntpin)$ VarFile
+/@@{RUN}/news$ VarDirInode
+
+/var/log/news/path/inpaths\.[0-9]{10}$ VarFile+ANF
+/var/log/news/@@{NEWSLOGS}$ VarFile
+/var/log/news/OLD/(expire\.log\.0|unwanted\.log)$ VarFile
+/var/log/news/OLD/@@{OLDLOGS}\.1\.gz$ LoSerMemberLog
+/var/log/news/OLD/@@{OLDLOGS}\.[0-9]+\.gz$ SerMemberLog
+/var/log/news(/(path|OLD))?$ VarDir

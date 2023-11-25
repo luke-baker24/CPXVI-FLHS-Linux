@@ -1,0 +1,3 @@
+/var/lib/postfix/prng_exch$ VarFile
+/var/spool/postfix/(active|incoming|maildrop)$ VarDir
+/var/spool/postfix/public/(pickup|qmgr)$ VarTime

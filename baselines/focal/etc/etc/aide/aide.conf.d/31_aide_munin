@@ -1,0 +1,25 @@
+/var/cache/munin/www/index\.html$ VarFile
+@@ifdef DNSDOMAINNAME
+@@ifdef FQDN
+/var/cache/munin/www/@@{DNSDOMAINNAME}/(index\.html|@@{FQDN}/[-_[:alnum:]]+\.(png|html))$ VarFile
+/var/lib/munin/@@{DNSDOMAINNAME}/@@{FQDN}-.*\.rrd$ VarFile
+/@@{RUN}/munin/munin-@@{DNSDOMAINNAME}-@@{FQDN}\.lock$ VarFile
+@@endif
+/var/cache/munin/www/@@{DNSDOMAINNAME}/comparison-(month|day|year|week)\.html$ VarFile
+@@endif
+!/@@{RUN}/munin/munin-(update|datafile|graph|limits|html)\.lock$
+/var/lib/munin/(limits|datafiles|munin-(update|graph)\.stats)$ VarFile
+!/var/lib/munin/munin-(update|graph)\.stats\.tmp$
+/var/lib/munin/plugin-state/(exim_mailstats(-(([0-9]|([1-9]|1[0-9]|2[0-4])[0-9]|25[0-5])\.){3}([0-9]|([1-9]|1[0-9]|2[0-4])[0-9]|25[0-5]))?|(smart-[sh]d[a-z]|munin-cupsys-pages)\.state)$ VarFile
+/var/lib/munin/plugin-state/(postfix_mailvolume|_proc_net_tcp[6]?)$ VarFile
+/var/lib/munin/datafile$ VarFile
+/var/lib/munin$ VarDir
+@@define LOGFILES (node|graph|update|html|limits)
+/var/log/munin/munin-@@{LOGFILES}\.log$ Log 
+/var/log/munin/munin-@@{LOGFILES}\.log\.1\.gz$ LoSerMemberLog
+/var/log/munin/munin-@@{LOGFILES}\.log\.[2-6]\.gz$ SerMemberLog
+/var/log/munin/munin-@@{LOGFILES}\.log\.7\.gz$ HiSerMemberLog
+/var/log/munin$ VarDir
+!/@@{RUN}/munin/munin-server-socket\.[0-9]+$
+/@@{RUN}/munin/munin-node\.pid$ VarFile
+/@@{RUN}/munin$ VarDirInode

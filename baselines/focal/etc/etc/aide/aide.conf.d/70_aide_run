@@ -1,0 +1,7 @@
+/@@{LIBINITRW}/sendsigs\.omit\.d$ VarDirInode
+/@@{LIBINITRW}/\.ramfs$ VarFile
+/@@{LIBINITRW}$ VarDirInode
+
+/@@{RUNLOCK}/\.ramfs$ VarFile
+/@@{RUNLOCK}$ VarDirInode
+/@@{RUN}$ VarDirInode-n

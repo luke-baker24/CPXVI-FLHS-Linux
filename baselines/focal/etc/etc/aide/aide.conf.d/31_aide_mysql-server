@@ -1,0 +1,8 @@
+/var/lib/mysql$ VarDir
+/var/lib/mysql/(ibdata1|ib_logfile0)$ VarFile
+/var/log/mysql$ VarDir
+/var/log/mysql/mysql-bin\.index$ VarFile
+!/var/log/mysql/mysql-bin\.[0-9]{3}$
+!/var/log/mysql/mysql-bin\.[0-9]{6}$
+/@@{RUN}/mysqld/mysqld\.(sock|pid)$ VarFile
+/@@{RUN}/mysqld$ VarDirInode

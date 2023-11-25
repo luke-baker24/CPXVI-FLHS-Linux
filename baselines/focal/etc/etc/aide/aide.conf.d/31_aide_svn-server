@@ -1,0 +1,15 @@
+#!/bin/bash
+
+REPOSITORIES=""
+
+if [ -r "$UPAC_settingsd/31_aide_svn-server_settings" ]; then
+  # pull in configuration
+  . "$UPAC_settingsd/31_aide_svn-server_settings"
+fi
+
+for svnpath in $REPOSITORIES; do
+    [ -d $svnpath ] || exit 1
+    echo ${svnpath//\./\\\.}"db/(txn-)?current$ VarFile"
+    echo ${svnpath//\./\\\.}"db/rev(prop)?s/0/[0-9]+$ Full+ANF"
+    echo ${svnpath//\./\\\.}"(db(/(txn-protorevs|transactions|rev(prop)?s/0))?|dav/activities\.d)$ VarDir"
+done

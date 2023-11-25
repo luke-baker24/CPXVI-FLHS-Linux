@@ -1,0 +1,37 @@
+!/var/lib/mailman/data/(bounce-events|heldmsg-[-[:alnum:]]+)-[[:digit:]]+\.pck$
+/var/lib/mailman/data$ VarDir
+!/var/lib/mailman/archives/private/[-[:alnum:]]+/database/@@{YEAR4D}-[[:alnum:]]+-(author|subject|thread|article|date)$
+!/var/lib/mailman/archives/private/[-[:alnum:]]+/@@{YEAR4D}-[[:alnum:]]+/(author|subject|thread|date|index|[[:digit:]]{5,6})\.html$
+!/var/lib/mailman/archives/private/[-[:alnum:]]+/@@{YEAR4D}-[[:alnum:]]\.txt(\.gz)?$
+!/var/lib/mailman/archives/private/[-[:alnum:]]+/attachments/[[:digit:]]{8}/[[:digit:]]{8}/[[:alnum:]\.]+$
+
+/var/lib/mailman/lists/[-[:alnum:]]+/(config|request|pending)\.pck$ VarFile
+/var/lib/mailman/lists/[-[:alnum:]]+/(config)\.pck\.last$ VarFile
+/var/lib/mailman/lists/[-[:alnum:]]+$ VarDir
+
+/var/lib/mailman/qfiles/(in|archive|bounces|retry|out|virgin)$ VarFile
+
+/@@{RUNLOCK}/mailman/master-qrunner(\.[[:alnum:]]+\.[[:digit:]]+)?$ VarFile
+/@@{RUNLOCK}/mailman$ VarDirInode
+
+/var/log/mailman$ VarDir
+@@define LOGFILES4 (vette|error|bounce|digest)
+/var/log/mailman/@@{LOGFILES4}$ Log
+/var/log/mailman/@@{LOGFILES4}\.1$ LowLog
+/var/log/mailman/@@{LOGFILES4}\.2\.gz$ LoSerMemberLog
+/var/log/mailman/@@{LOGFILES4}\.3\.gz$ SerMemberLog
+/var/log/mailman/@@{LOGFILES4}\.4\.gz$ HiSerMemberLog
+
+@@define LOGFILES12 (subscribe|post)
+/var/log/mailman/@@{LOGFILES12}$ Log
+/var/log/mailman/@@{LOGFILES12}\.1$ LowLog
+/var/log/mailman/@@{LOGFILES12}\.2\.gz$ LoSerMemberLog
+/var/log/mailman/@@{LOGFILES12}\.([3-9]|1[0-1])\.gz$ SerMemberLog
+/var/log/mailman/@@{LOGFILES12}\.12\.gz$ HiSerMemberLog
+
+@@define LOGFILES7 (qrunner|fromusenet|locks|smtp(-failure)?)
+/var/log/mailman/@@{LOGFILES7}$ Log
+/var/log/mailman/@@{LOGFILES7}\.1$ LowLog
+/var/log/mailman/@@{LOGFILES7}\.2\.gz$ LoSerMemberLog
+/var/log/mailman/@@{LOGFILES7}\.[3-6]\.gz$ SerMemberLog
+/var/log/mailman/@@{LOGFILES7}\.7\.gz$ HiSerMemberLog

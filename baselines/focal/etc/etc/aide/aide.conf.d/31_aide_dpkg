@@ -1,0 +1,14 @@
+/var/lib/dpkg/(available|status)(-old)?$ VarFile
+/var/lib/dpkg/status\.yesterday(\.[0-9]*)?(\.gz)?$ VarFile
+/var/lib/dpkg/triggers/Lock$ VarFile
+/var/lib/dpkg/(info|updates|lock)$ VarDir
+/var/lib/dpkg$ VarDir
+/var/log/(alternatives|dpkg)\.log$ Log
+/var/log/(alternatives|dpkg)\.log\.1$ LowLog
+/var/log/(alternatives|dpkg)\.log\.2\.gz$ LoSerMemberLog
+/var/log/(alternatives|dpkg)\.log\.([3-9]|1[0-1])\.gz$ SerMemberLog
+/var/log/(alternatives|dpkg)\.log\.12\.gz$ HiSerMemberLog
+/var/backups/(alternatives\.tar|dpkg\.(status|diversions|statoverride))\.0$ LowLog
+/var/backups/(alternatives\.tar|dpkg\.(status|diversions|statoverride))\.1\.gz$ LoSerMemberLog
+/var/backups/(alternatives\.tar|dpkg\.(status|diversions|statoverride))\.[2345]\.gz$ SerMemberLog
+/var/backups/(alternatives\.tar|dpkg\.(status|diversions|statoverride))\.6\.gz$ HiSerMemberLog

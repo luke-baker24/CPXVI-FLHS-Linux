@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# generate aide exclude patterns for all nodes listed in $MUNINCONF
+
+MUNINCONF=/etc/munin/munin.conf
+
+[ -e $MUNINCONF ] || exit 0
+
+HOSTS=$(grep '^\[[[:alnum:]:.]\+\]' $MUNINCONF | tr -d '[]')
+
+escape_dots()
+{
+    echo $1 | sed 's/\./\\\./g'
+}
+
+for HOST in $HOSTS; do
+	DOMAIN=$(escape_dots ${HOST#*.})
+	DHOST=$(escape_dots $HOST)
+
+	echo "/var/cache/munin/www/$DOMAIN/(index\.html|$DHOST/[-_[:alnum:]]+\.(png|html))$ VarFile"
+	echo "/var/lib/munin/$DOMAIN/$DHOST-.*\.rrd$ VarFile"
+	echo "/@@{RUN}/munin/munin-(update|datafile|$DOMAIN-$DHOST|limits)\.lock$ VarFile"
+done

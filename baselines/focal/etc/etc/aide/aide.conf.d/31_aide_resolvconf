@@ -1,0 +1,5 @@
+/etc/resolv\.conf$ VarFile
+/@@{LIBINITRW}/resolvconf/interface/(wlan|eth)[0-9]+(\.(dhclient|inet))?$ VarFile
+/@@{LIBINITRW}/resolvconf/enable-updates$ VarFile
+/@@{LIBINITRW}/resolvconf/resolv\.conf$ VarFile
+/@@{LIBINITRW}/resolvconf(/interface)?$ VarDirInode

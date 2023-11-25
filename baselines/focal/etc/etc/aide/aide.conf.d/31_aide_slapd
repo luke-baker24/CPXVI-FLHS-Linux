@@ -1,0 +1,10 @@
+/var/lib/ldap/[[:alnum:]]+\.bdb$ VarTime
+/var/lib/ldap/__db\.00[1-5]+$ VarFile
+/var/lib/ldap/log\.0000000001$ VarFile
+/var/lib/ldap/alock$ VarFile
+/var/lib/ldap$ VarDir
+
+/@@{RUN}/ldapi$ VarInode
+/@@{RUN}/slapd/slapd\.args$ VarInode
+/@@{RUN}/slapd/slapd\.pid$ VarFile
+/@@{RUN}/slapd$ VarDirInode

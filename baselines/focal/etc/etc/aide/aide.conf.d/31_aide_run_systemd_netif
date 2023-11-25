@@ -1,0 +1,3 @@
+/@@{RUN}/systemd/netif(/(links|lldp|leases))?$ VarDir
+/@@{RUN}/systemd/netif/state$ VarFile
+/@@{RUN}/systemd/netif/(links|lldp|leases)/[0-9]{1,2}$ VarFile

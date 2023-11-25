@@ -1,0 +1,2 @@
+/var/lib/logrotate$ VarDir
+/var/lib/logrotate/status$ VarFile

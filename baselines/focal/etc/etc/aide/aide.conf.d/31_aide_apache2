@@ -1,0 +1,15 @@
+@@ifdef APACHE2_SUEXEC
+@@define APACHE2_LOGS (access|error|suexec)
+@@else
+@@define APACHE2_LOGS (access|error)
+@@endif
+/var/log/apache2/@@{APACHE2_LOGS}\.log$ Log
+/var/log/apache2/@@{APACHE2_LOGS}\.log\.1$ LowLog
+/var/log/apache2/@@{APACHE2_LOGS}\.log\.2\.gz$ LoSerMemberLog
+/var/log/apache2/@@{APACHE2_LOGS}\.log\.([3-9]|[1-4][0-9]|5[0-1])\.gz$ SerMemberLog
+/var/log/apache2/@@{APACHE2_LOGS}\.log\.52\.gz$ HiSerMemberLog
+
+/@@{RUN}/apache2\.pid$ VarFile
+/@@{RUN}/apache2/ssl_scache$ VarFile
+/var/log/apache2$ VarDir
+/@@{RUN}/apache2$ VarDirInode

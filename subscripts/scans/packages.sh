@@ -24,14 +24,26 @@ do
     output_log "SNP" "$new_package is an unauthorized snap"
 done
 
+#sudo systemctl list-units --type=service | tr -s ' ' | tail -n +2 | head -n -6
+
 #Unnecessary service scan
-for service in $(service --status-all)
+for service in $(service --status-all | grep "+")
 do
     #service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
     echo $service
 
     if [[ $service =~ "^bluetooth.*$" ]] || [[ $service =~ "^cups.*$" ]] || [[ $service =~ "^avahi.*$" ]]; then
         output_log "SVC" "$service is an unnecessary service. Disable it unless absolutely necesary."
+    fi
+done
+
+for service in $(service --status-all | grep "-")
+do
+    #service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
+    echo $service
+
+    if [[ $service =~ "^apparmor.*$" ]]; then
+        output_log "SVC" "$service should be enabled."
     fi
 done
 

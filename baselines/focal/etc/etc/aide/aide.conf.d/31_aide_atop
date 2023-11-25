@@ -1,0 +1,9 @@
+/var/log/atop$ VarDirInode
+!/var/log/atop/(atop_@@{YEAR4D}[[:digit:]]{4}|daily\.log)$
+/var/log/atop/dummy_(after|before)$ VarFile
+/@@{RUN}/(pacct_shadow\.d|atop)$ VarDir
+/@@{RUN}/atop/atop\.acct$ VarFile
+/@@{RUN}/atop\.pid$ VarFile
+!/@@{RUN}/pacct_shadow\.d/[0-9]{10}\.paf$
+/@@{RUN}/pacct_shadow\.d/current$ VarFile
+/@@{RUN}/pacct_source$ VarFile

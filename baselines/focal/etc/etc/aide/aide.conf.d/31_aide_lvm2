@@ -1,0 +1,3 @@
+/etc/lvm/cache/\.cache$ VarInode
+/etc/lvm/cache$ VarDir
+/@@{RUNLOCK}/lvm$ VarDirInode

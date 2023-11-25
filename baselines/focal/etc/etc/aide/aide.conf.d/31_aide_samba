@@ -1,0 +1,24 @@
+/etc/samba/passdb\.tdb$ VarFile
+
+/var/log/samba/log\.(smbd|nmbd)$ Log
+/var/log/samba/log\.(smbd|nmbd)\.1\.gz$ LoSerMemberLog
+/var/log/samba/log\.(smbd|nmbd)\.[2-6]\.gz$ SerMemberLog
+/var/log/samba/log\.(smbd|nmbd)\.7\.gz$ HiSerMemberLog
+
+/var/log/samba/log\.[[:alnum:]._]+$ FreqRotLog
+/var/log/samba/log\.[[:alnum:]._]+\.old$ LowLog
+
+/var/log/samba/cores/[sn]mbd$ VarDir
+
+/@@{RUN}/samba/[sn]mbd\.pid$ VarFile
+/@@{RUN}/samba/(gencache(_notrans)?|messages|sessionid|connections|brlock|locking|notify(_onelevel)?|unexpected)\.tdb$ VarFile
+!/@@{RUN}/samba/namelist\.debug$
+
+/var/cache/samba/browse\.dat$ VarFile
+
+/var/lib/samba/(wins\.dat|(group_mapping\.l|(wins|registry|ntprinters|schannel_store)\.t)db)$ VarFile
+/var/lib/samba/private/msg\.sock$ VarFile
+
+/var/(log|cache|lib)/samba$ VarDir
+/@@{RUN}/samba(/msg\.lock)?$ VarDirInode
+!/@@{RUN}/samba/msg\.lock/[0-9]+$

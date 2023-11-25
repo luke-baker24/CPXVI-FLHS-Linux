@@ -1,0 +1,5 @@
+/var/lib/dovecot/ssl-parameters\.dat$ VarFile
+/var/lib/dovecot$ VarDir
+/@@{RUN}/dovecot/(auth-worker\.[0-9]{4}|master\.pid)$ VarFile
+/@@{RUN}/dovecot/login/(default|ssl-parameters\.dat)$ VarFile
+/@@{RUN}/dovecot(/login)?$ VarDirInode

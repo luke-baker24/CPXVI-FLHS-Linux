@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount unit for snap-store, revision 558
+Before=snapd.service
+After=zfs-mount.service
+
+[Mount]
+What=/var/lib/snapd/snaps/snap-store_558.snap
+Where=/snap/snap-store/558
+Type=squashfs
+Options=nodev,ro,x-gdu.hide,x-gvfs-hide
+LazyUnmount=yes
+
+[Install]
+WantedBy=multi-user.target

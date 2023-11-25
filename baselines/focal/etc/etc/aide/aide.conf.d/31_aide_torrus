@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if ! [ -d /var/lib/torrus ]; then
+  exit 0
+fi
+
+find /var/lib/torrus/collector_rrd -name '*.rrd' | \
+     sed 's/^\(.*\)/\1$ VarFile/'
+
+TORRUS_TREES=""
+
+for tree in $TORRUS_TREES; do
+  cat <<EOF
+@@define TORRUS_TREE $tree
+/var/lib/torrus/db/sub/@@{TORRUS_TREE}/(config_readers|nodepcache_1|scheduler_stats)\.db$ VarFile
+/var/log/torrus/collector\.@@{TORRUS_TREE}_0\.log$ Log
+/@@{RUN}/torrus/collector\.@@{TORRUS_TREE}_0\.pid$ VarFile
+EOF
+done
+
+cat <<EOF
+!/var/cache/torrus/[0-9a-f]{32}_[0-9]{5}$
+/var/lib/torrus/db/__db\.00[1234]$ VarFile
+/var/lib/torrus/db/render_cache\.db$ VarFile
+!/var/lib/torrus/session_data/store/[0-9a-f]{32}$
+!/var/lib/torrus/session_data/lock/Apache-Session-[0-9a-f]{32}\.lock$
+/var/lib/torrus/session_data/(store|lock)$ VarDir
+!/var/log/torrus/dbenv_errlog_$(pidof collector)$
+/var/log/torrus$ VarDir
+/@@{RUN}/torrus$ VarDirInode
+EOF

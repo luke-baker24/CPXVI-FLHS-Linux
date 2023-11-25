@@ -1,0 +1,13 @@
+@@define INTERFACES wlan0
+/@@{LIBINITRW}/sendsigs\.omit\.d/wpasupplicant\.wpa_(supplicant|action)\.@@{INTERFACES}\.pid$ VarFile
+
+/@@{RUN}/wpa_action\.@@{INTERFACES}\.(pid|timestamp)$ VarFile
+/@@{RUN}/wpa_supplicant\.@@{INTERFACES}\.pid$ VarFile
+/@@{RUN}/wpa_supplicant/@@{INTERFACES}$ VarFile
+/@@{RUN}/wpa_supplicant$ VarDirInode
+
+@@define WPA_LOGS wpa_(action|supplicant)\.@@{INTERFACES}
+/var/log/@@{WPA_LOGS}\.log$ Log
+/var/log/@@{WPA_LOGS}\.log\.1\.gz$ LoSerMemberLog
+/var/log/@@{WPA_LOGS}\.log\.[2-4]\.gz$ SerMemberLog
+/var/log/@@{WPA_LOGS}\.log\.5\.gz$ HiSerMemberLog

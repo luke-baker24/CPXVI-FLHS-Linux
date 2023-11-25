@@ -1,0 +1,6 @@
+/var/lib/ntp/ntp\.drift$ VarFile
+/var/lib/ntp$ VarDir
+!/var/log/ntpstats/peerstats(\.[0-9]{8})?
+!/var/log/ntpstats/loopstats(\.[0-9]{8})?
+/var/log/ntpstats$ VarDir
+/@@{RUN}/ntpd\.pid$ VarFile

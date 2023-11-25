@@ -1,0 +1,9 @@
+/var/lib/urandom/random-seed$ VarFile
+/var/lib/(urandom|initscripts)$ VarDir
+/var/log/dmesg$ Log
+/var/log/dmesg\.0$ LowLog
+/var/log/dmesg\.1\.gz$ LoSerMemberLog
+/var/log/dmesg\.[23]\.gz$ SerMemberLog
+/var/log/dmesg\.4\.gz$ HiSerMemberLog
+/var/log/fsck/check(root|fs)$ VarFile
+/@@{RUN}/motd$ VarFile

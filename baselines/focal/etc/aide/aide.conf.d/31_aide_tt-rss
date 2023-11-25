@@ -1,0 +1,7 @@
+/var/lib/tt-rss/update_daemon.(stamp|lock)$ VarFile
+/var/lib/tt-rss$ VarDirTime
+
+/var/log/tt-rss\.log$ Log
+/var/log/tt-rss\.log\.1\.gz$ LoSerMemberLog
+/var/log/tt-rss\.log\.[2-6]\.gz$ SerMemberLog
+/var/log/tt-rss\.log\.7\.gz$ HiSerMemberLog

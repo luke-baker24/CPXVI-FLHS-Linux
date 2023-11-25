@@ -1,0 +1,4 @@
+/@@{RUN}/systemd/journal/kernel-seqnum$ VarFile
+/@@{RUN}/systemd/journal/streams$ VarDir
+/@@{RUN}/systemd/journal/streams/[0-9]:[0-9]{4,7}$ VarFile+ANF+ARF
+!/@@{RUN}/log/journal/[0-9a-f]{32}(/system(@[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{16})?\.journal)?$

@@ -1,0 +1,10 @@
+/var/log/clamav/freshclam\.log$ Log
+/var/log/clamav/freshclam\.log\.1$ LowLog
+/var/log/clamav/freshclam\.log\.2\.gz$ LoSerMemberLog
+/var/log/clamav/freshclam\.log\.([3-9]|1[0-1])\.gz$ SerMemberLog
+/var/log/clamav/freshclam\.log\.12\.gz$ HiSerMemberLog
+/var/lib/clamav/(daily|main)\.inc$ VarDir
+/var/lib/clamav/bytecode\.cld$ VarFile
+/var/lib/clamav/daily\.inc/daily\.(info|[nmhp]db)$ VarFile
+/var/lib/clamav/mirrors.dat$ VarFile
+/@@{RUN}/clamav/freshclam\.pid$ VarFile

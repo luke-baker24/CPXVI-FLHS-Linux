@@ -1,0 +1,4 @@
+/var/log/rsnapshot\.log$ Log
+/var/log/rsnapshot\.log\.1\.gz$ LoSerMemberLog
+/var/log/rsnapshot\.log\.[2-5]\.gz$ SerMemberLog
+/var/log/rsnapshot\.log\.6\.gz$ HiSerMemberLog

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+REPOSITORIES=""
+
+if [ -r "$UPAC_settingsd/31_aide_trac_settings" ]; then
+  # pull in configuration
+  . "$UPAC_settingsd/31_aide_trac_settings"
+fi
+
+for tracpath in $REPOSITORIES; do
+    [ -d $tracpath ] || exit 1
+    echo ${tracpath//\./\\\.}"db/trac\.db$ VarFile"
+    echo ${tracpath//\./\\\.}"db$ VarDir"
+done

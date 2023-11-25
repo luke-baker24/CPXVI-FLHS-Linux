@@ -1,0 +1,6 @@
+/var/log/apache/(access|error)\.log$ Log
+/var/log/apache/(access|error)\.log\.1$ LowLog
+/var/log/apache/(access|error)\.log\.2\.gz$ LoSerMemberLog
+/var/log/apache/(access|error)\.log\.[0-9]+\.gz$ SerMemberLog
+/var/log/apache$ VarDir
+/@@{RUN}/apache\.pid$ VarFile

@@ -1,0 +1,14 @@
+/var/log/postgresql/postgresql-[0-9]\.[0-9]-main\.log$ Log
+/var/log/postgresql/postgresql-[0-9]\.[0-9]-main\.log\.1$ LowLog
+/var/log/postgresql/postgresql-[0-9]\.[0-9]-main\.log\.2\.gz$ LoSerMemberLog
+/var/log/postgresql/postgresql-[0-9]\.[0-9]-main\.log\.[3-9]\.gz$ SerMemberLog
+/var/log/postgresql/postgresql-[0-9]\.[0-9]-main\.log\.10\.gz$ HiSerMemberLog
+/var/log/postgresql$ VarDir
+
+/@@{RUN}/postgresql/[0-9]\.[0-9]-main\.pid$ VarFile
+/@@{RUN}/postgresql$ VarDirInode
+
+@@define PORT 5432
+/@@{RUN}/postgresql/\.s\.PGSQL\.@@{PORT}(\.lock)?$ VarFile
+/var/lib/postgresql/[0-9]\.[0-9]/main/pg_stat_tmp/pgstat\.stat$ VarFile
+/var/lib/postgresql/[0-9]\.[0-9]/main/pg_stat_tmp$ VarDir

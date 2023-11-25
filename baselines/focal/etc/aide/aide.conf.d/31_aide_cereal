@@ -1,0 +1,9 @@
+# replace CEREALSESS with a regexp matching your session names
+#@@define CEREALSESS (session|session)
+@@ifdef CEREALSESS
+!/@@{RUN}/screen/S-@@{CEREALSESS}(/[0-9]+\.cereal:@@{CEREALSESS})?$
+!/var/lib/cereal/sessions/@@{CEREALSESS}/log/main(/@[0-9a-f]{24}\.s)?$
+/var/lib/cereal/sessions/@@{CEREALSESS}/socket$ VarFile
+/var/lib/cereal/sessions/@@{CEREALSESS}/supervise$ VarDir
+/var/lib/cereal/sessions/@@{CEREALSESS}/supervise/(pid|stat|status)$ VarFile
+@@endif

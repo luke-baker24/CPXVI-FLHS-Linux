@@ -1,0 +1,15 @@
+@@define LOGFILES7R (syslog)
+/var/log/@@{LOGFILES7R}$ Log
+/var/log/@@{LOGFILES7R}\.1$ LowLog
+/var/log/@@{LOGFILES7R}\.2\.gz$ LoSerMemberLog
+/var/log/@@{LOGFILES7R}\.[3-6]\.gz$ SerMemberLog
+/var/log/@@{LOGFILES7R}\.7\.gz$ HiSerMemberLog
+@@define LOGFILES4R (messages|debug|(cron|lpr|auth|daemon|kern|user)\.log|mail\.(log|err|warn|info))
+/var/log/@@{LOGFILES4R}$ Log
+/var/log/@@{LOGFILES4R}\.1$ LowLog
+/var/log/@@{LOGFILES4R}\.2\.gz$ LoSerMemberLog
+/var/log/@@{LOGFILES4R}\.3\.gz$ SerMemberLog
+/var/log/@@{LOGFILES4R}\.4\.gz$ HiSerMemberLog
+/var/log$ VarDir
+/@@{RUN}/rsyslogd.pid$ VarFile
+/@@{LIBINITRW}/sendsigs\.omit\.d/rsyslog$ VarInode

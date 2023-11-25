@@ -1,0 +1,5 @@
+/@@{RUN}/screen/S-[0-9a-z]+$ VarDirInode
+@@ifdef HOSTNAME
+!/@@{RUN}/screen/S-[0-9a-z]+/[0-9]{1,5}\.pts-[0-9]\.@@{HOSTNAME}$
+@@endif
+/@@{RUN}/screen$ VarDirInode

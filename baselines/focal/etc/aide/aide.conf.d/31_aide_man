@@ -1,0 +1,6 @@
+/var/cache/man/(cat[123456789]|local|opt|fsstnd|oldlocal|X11R6)$ VarDir
+
+@@define LANGS (ca|cs|da|de(\.UTF-8)?|en|es(\.UTF-8)?|fi|fr(\.(ISO8859-1|UTF-8))?|gl|hr|hu|id|it(\.(ISO8859-1|UTF-8))?|ja(\.UTF-8)?|jp|ko|nl|pl(\.(UTF-8|ISO8859-2))?|pt(_BR)?|ro|ru|sv|sk|sl|tr|vi|zh(_(CH|CN|TW))?)
+
+/var/cache/man(/@@{LANGS})?/(CACHEDIR\.TAG|index\.db)$ VarFile
+/var/cache/man(/@@{LANGS})?$ VarDir

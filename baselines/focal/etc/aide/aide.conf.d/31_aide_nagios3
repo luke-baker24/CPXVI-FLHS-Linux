@@ -1,0 +1,15 @@
+!/var/lib/nagios3/spool/checkresults/[a-zA-Z0-9]{7}(\.ok)?$
+/var/lib/nagios3/spool/checkresults$ VarDir
+/var/lib/nagios3/retention\.dat$ VarFile
+/var/lib/nagios3$ VarDir
+
+/var/log/nagios3/archives/nagios-[0-9]{2}-[0-9]{2}-[0-9]{4}-[0-9]{2}\.log$ LoSerMemberLog
+/var/log/nagios3/archives$ VarDir
+/var/log/nagios3/nagios\.log$ LowLog
+/var/log/nagios3$ VarDir
+
+/var/cache/nagios3/(status\.dat|objects\.cache)$ VarFile
+/var/cache/nagios3$ VarDir
+
+/@@{RUN}/nagios3/nagios3\.pid$ VarFile
+/@@{RUN}/nagios3$ VarDirInode

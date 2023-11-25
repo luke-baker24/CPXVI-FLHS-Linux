@@ -1,0 +1,3 @@
+/@@{RUN}/mdadm/(monitor|autorebuild)\.pid$ VarFile
+/run/mdadm/m(ap|d[0-9]+-uevent)$ VarInode
+/@@{RUN}/mdadm$ VarDirInode

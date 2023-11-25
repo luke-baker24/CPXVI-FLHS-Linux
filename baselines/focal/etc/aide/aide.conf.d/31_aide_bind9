@@ -1,0 +1,13 @@
+@@ifdef BINDCHROOT
+@@{BINDCHROOT}/dev/log$ LowLog
+@@{BINDCHROOT}/dev VarDir
+@@endif
+@@{BINDCHROOT}/var/log/bind/queries\.log$ Log
+@@{BINDCHROOT}/var/log/bind/queries\.log\.0$ LoSerMemberLog
+@@{BINDCHROOT}/var/log/bind/queries\.log\.[1-8]$ SerMemberLog
+@@{BINDCHROOT}/var/log/bind/queries\.log\.9$ HiSerMemberLog
+@@{BINDCHROOT}/var/log/bind VarDir
+@@{BINDCHROOT}/@@{RUN}/named/(session\.key|named\.pid)$ VarFile
+@@{BINDCHROOT}/@@{RUN}/named$ VarDirInode
+@@{BINDCHROOT}/var/cache/bind$ VarDir
+@@{BINDCHROOT}/var/cache/bind/[-[:alnum:].]+$ VarFile

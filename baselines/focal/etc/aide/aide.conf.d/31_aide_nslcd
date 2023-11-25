@@ -1,0 +1,2 @@
+/@@{RUN}/nslcd/(socket|nslcd\.pid)$ VarFile
+/@@{RUN}/nslcd$ VarDirInode

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for dir in /run/sudo /var/lib/sudo; do
+  if [ -d "$dir" ]; then
+    printf "%s/ts/[a-z0-9]+$ VarFile\n" "$dir"
+    break;
+  fi
+done

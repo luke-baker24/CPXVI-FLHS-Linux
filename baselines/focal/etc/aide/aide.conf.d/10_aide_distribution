@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -e "/etc/debian_version" ]; then
+  echo "@@ifndef DEBIANVERSION"
+  echo "@@define DEBIANVERSION Debian/$(head -n 1 /etc/debian_version | sed 's/[^-\/()a-zA-Z0-9]/_/g')"
+  echo "@@endif"
+fi
+if [ -x "/usr/bin/lsb_release" ]; then
+  for parm in id description release codename; do
+    PARM="$LSB_$(echo $parm | tr 'a-z' 'A-Z')"
+    echo "@@ifndef $PARM"
+    echo "@@define $PARM $(/usr/bin/lsb_release --short --$parm | sed 's/[^-\/a-z()A-Z0-9]/_/g')"
+    echo "@@endif"
+  done
+fi

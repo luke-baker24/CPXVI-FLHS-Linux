@@ -1,0 +1,13 @@
+/var/log/aptitude$ Log
+/var/log/aptitude\.1\.gz$ LoSerMemberLog
+/var/log/aptitude\.[2-5]\.gz$ SerMemberLog
+/var/log/aptitude\.6\.gz$ HiSerMemberLog
+/var/backups/aptitude\.pkgstates\.0$ LowLog
+/var/backups/aptitude\.pkgstates\.1\.gz$ LoSerMemberLog
+/var/backups/aptitude\.pkgstates\.[2345]\.gz$ SerMemberLog
+/var/backups/aptitude\.pkgstates\.6\.gz$ HiSerMemberLog
+/var/lib/aptitude/pkgstates(\.old)?$ VarFile
+/var/lib/aptitude$ VarDir
+!/@@{RUNLOCK}/aptitude$
+/root/\.(aptitude|debtags)$ VarDir
+/root/\.aptitude/config$ VarFile

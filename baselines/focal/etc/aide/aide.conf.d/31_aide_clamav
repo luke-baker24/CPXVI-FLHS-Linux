@@ -1,0 +1,8 @@
+/var/log/clamav/clamav\.log$ Log
+/var/log/clamav/clamav\.log\.1$ LowLog
+/var/log/clamav/clamav\.log\.2\.gz$ LoSerMemberLog
+/var/log/clamav/clamav\.log\.([3-9]|1[0-1])\.gz$ SerMemberLog
+/var/log/clamav/clamav\.log\.12\.gz$ HiSerMemberLog
+/@@{RUN}/clamav/clamd\.(ctl|pid)$ VarFile
+/var/log/clamav$ VarDir
+/@@{RUN}/clamav$ VarDirInode

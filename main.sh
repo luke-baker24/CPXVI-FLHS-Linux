@@ -287,10 +287,10 @@ while true; do
                         meld "$(pwd)/baselines/$VERSION/apt" /etc/apt
                     ;;
                     "4)")
-                        meld "$(pwd)/baselines/$VERSION/apt" /etc/apt
+                        meld "$(pwd)/baselines/$VERSION/security" /etc/security
                     ;;
                     "5)")
-                        meld "$(pwd)/baselines/$VERSION/security" /etc/gdm3
+                        meld "$(pwd)/baselines/$VERSION/gdm3" /etc/gdm3
                     ;;
                     "6)")
                         meld "$(pwd)/baselines/$VERSION/grub.d" /etc/grub.d

@@ -26,7 +26,7 @@
 #logo='/usr/share/images/vendor-logos/logo-text-version-128.png'
 
 # - Disable user list
-# disable-user-list=true
+disable-user-list=true
 # - Disable restart buttons
 # disable-restart-buttons=true
 # - Show a login welcome message
@@ -38,10 +38,10 @@
 [org/gnome/settings-daemon/plugins/power]
 # - Time inactive in seconds before suspending with AC power
 #   1200=20 minutes, 0=never
-# sleep-inactive-ac-timeout=1200
+sleep-inactive-ac-timeout=1200
 # - What to do after sleep-inactive-ac-timeout
 #   'blank', 'suspend', 'shutdown', 'hibernate', 'interactive' or 'nothing'
-# sleep-inactive-ac-type='suspend'
+sleep-inactive-ac-type='suspend'
 # - As above but when on battery
-# sleep-inactive-battery-timeout=1200
-# sleep-inactive-battery-type='suspend'
+sleep-inactive-battery-timeout=1200
+sleep-inactive-battery-type='suspend'

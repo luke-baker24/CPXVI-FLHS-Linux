@@ -1,3 +1,0 @@
-/var/lib/snmp/snmpd\.conf$ VarFile
-/var/lib/snmp$ VarDir
-/@@{RUN}/snmpd\.pid$ VarFile

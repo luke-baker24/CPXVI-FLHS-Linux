@@ -1,2 +1,0 @@
-/@@{RUN}/portmap(\.pid|_mapping)$ VarFile
-/@@{LIBINITRW}/sendsigs\.omit\.d/portmap$ VarInode

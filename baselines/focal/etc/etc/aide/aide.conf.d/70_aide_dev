@@ -1,4 +1,0 @@
-!/dev/pts/[0-9]{1,2}$
-/dev/pts$ VarDir
-
-/dev RamdiskData

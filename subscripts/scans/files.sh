@@ -20,6 +20,14 @@ else
     apt install aide
 fi
 
+if [[ $(which debsums) ]]; then
+    echo "Debsums installed"
+else
+    echo "Debsums is not installed."
+
+    apt install debsums
+fi
+
 aide_directory="$1/"
 logs_directory="$1/../../logs"
 
@@ -66,7 +74,16 @@ done < $logs_directory/new-dirs2.log
 sed -i '/^$/d' $logs_directory/new-dirs3.log
 
 for added_file in $(cat $logs_directory/policy-aide.log | grep -E "^[^d]{1}[\+]{17}\: .*$" | awk 'BEGIN { FS = ": " } ; {print $2}' | egrep -v "\($(cat $logs_directory/new-dirs3.log | tr '\n' '|')\)"); do
-    output_log "FIL" "$added_file has been added" $logs_directory
+    output_log "FIL" "Aide says $added_file has been added" $logs_directory
+done
+
+
+for changed_file in $(dpkg -l | egrep '^ii' | awk '{print $2}' | xargs sudo debsums -ac | grep -v 'OK'); do
+    output_log "FIL" "Debsums says that $changed_file was modified" $logs_directory
+done
+
+for changed_package in $(sudo dpkg -V); do
+    output_log "FIL" "Reminder to baker to GET BACK TO WORK" $logs_directory
 done
 
 
@@ -78,7 +95,7 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{4}p.{13}
     old_perms=$(echo $perms_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
     new_perms=$(echo $perms_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)
 
-    output_log "PRM" "$changed_file has changed file permissions from $old_perms to $new_perms" $logs_directory
+    output_log "PRM" "Aide says $changed_file has changed file permissions from $old_perms to $new_perms" $logs_directory
 done
 
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{5}u.{12}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | sort -u); do
@@ -90,7 +107,7 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{5}u.{12}
     old_user=$(id -nu $old_uid 2> /dev/null)
     new_user=$(id -nu $new_uid 2> /dev/null)
 
-    output_log "PRM" "$changed_file has changed user ownership from $old_uid $old_user to $new_uid $new_user" $logs_directory
+    output_log "PRM" "Aide says $changed_file has changed user ownership from $old_uid $old_user to $new_uid $new_user" $logs_directory
 done
 
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{6}g.{11}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | sort -u); do
@@ -102,14 +119,5 @@ for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{6}g.{11}
     old_user=$(getent group $old_uid | cut -d: -f1 2> /dev/null)
     new_user=$(getent group $new_uid | cut -d: -f1 2> /dev/null)
 
-    output_log "PRM" "$changed_file has changed group ownership from $old_uid $old_user to $new_uid $new_user" $logs_directory
-done
-
-for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{17}C\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | sort -u); do
-    perms_line=$(cat $logs_directory/policy-aide.log | grep -E "^.*: $changed_file$" -A 10 | grep 'Cap' | sort -u)
-
-    old_perms=$(echo $perms_line | cut -d ':' -f 2 | cut -d ' ' -f 2 | head -1)
-    new_perms=$(echo $perms_line | cut -d '|' -f 2 | cut -d ' ' -f 2 | head -1)
-
-    output_log "PRM" "$changed_file has changed file capabilities from $old_perms to $new_perms" $logs_directory
+    output_log "PRM" "Aide says $changed_file has changed group ownership from $old_uid $old_user to $new_uid $new_user" $logs_directory
 done

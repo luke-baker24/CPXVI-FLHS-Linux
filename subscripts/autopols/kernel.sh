@@ -1,7 +1,7 @@
 set_kernel_paremter() {
     sysctl -w $1
 
-    echo "$1"1 >> /etc/sysctl.conf
+    echo "$1" >> /etc/sysctl.conf
 }
 
 set_kernel_parameter dev.tty.ldisc_autoload=0

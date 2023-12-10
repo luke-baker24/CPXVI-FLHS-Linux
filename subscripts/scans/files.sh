@@ -78,15 +78,6 @@ for added_file in $(cat $logs_directory/policy-aide.log | grep -E "^[^d]{1}[\+]{
 done
 
 
-for changed_file in $(dpkg -l | egrep '^ii' | awk '{print $2}' | xargs sudo debsums -ac | grep -v 'OK'); do
-    output_log "FIL" "Debsums says that $changed_file was modified" $logs_directory
-done
-
-for changed_package in $(sudo dpkg -V); do
-    output_log "FIL" "Reminder to baker to GET BACK TO WORK" $logs_directory
-done
-
-
 
 #Get permissions modified
 for changed_file in $(cat $logs_directory/policy-aide.log | grep -E "^.{4}p.{13}\: " | awk 'BEGIN { FS = ": " } ; {print $2}' | sort -u); do

@@ -20,14 +20,6 @@ else
     apt install aide
 fi
 
-if [[ $(which debsums) ]]; then
-    echo "Debsums installed"
-else
-    echo "Debsums is not installed."
-
-    apt install debsums
-fi
-
 aide_directory="$1/"
 logs_directory="$1/../../logs"
 

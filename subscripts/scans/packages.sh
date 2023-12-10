@@ -32,7 +32,7 @@ do
     #service_name=$(echo $service | cut -d "]" -f 2 | tr -d "[:blank:]")
     echo $service
 
-    if [[ $service =~ "^bluetooth.*$" ]] || [[ $service =~ "^cups.*$" ]] || [[ $service =~ "^avahi.*$" ]]; then
+    if [[ $service =~ "^bluetooth.*$" ]] || [[ $service =~ "^cups.*$" ]] || [[ $service =~ "^avahi.*$" ]] || [[ $service =~ "^kdump.*$" ]]; then
         output_log "SVC" "$service is an unnecessary service. Disable it unless absolutely necesary."
     fi
 done

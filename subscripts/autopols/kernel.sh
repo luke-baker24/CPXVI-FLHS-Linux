@@ -1,4 +1,4 @@
-set_kernel_paremter() {
+set_kernel_parameter() {
     sysctl -w $1
 
     echo "$1" >> /etc/sysctl.conf
@@ -57,3 +57,5 @@ set_kernel_parameter net.ipv6.conf.default.disable_ipv6=1  #3.1.1
 set_kernel_parameter net.ipv6.route.flush=1  #3.1.1, 3.3.1, 3.3.2, 3.3.9
 
 set_kernel_parameter net.ipv4.tcp_max_syn_backlog=4096
+
+set_kernel_parameter net.ipv4.tcp_rfc1337=1

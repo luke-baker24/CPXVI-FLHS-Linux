@@ -144,9 +144,9 @@ ExposeAuthInfo no
 FingerprintHash sha256
 ForceCommand none
 KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group15-sha512,diffie-hellman-group14-sha526,diffie-hellman-group-exchage-sha256
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
+#MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
 MaxAuthTries 3
-MaxSessions 5
+MaxSessions 3
 MaxStartups 10:30:100
 PasswordAuthentication yes
 PermitEmptyPasswords no
@@ -170,3 +170,4 @@ SyslogFacility AUTH
 TCPKeepAlive no
 UseDNS yes
 VersionAddendum none
+Protocol 2

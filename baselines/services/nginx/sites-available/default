@@ -19,6 +19,7 @@
 # Default server configuration
 #
 server {
+	
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
@@ -68,8 +69,59 @@ server {
 	#location ~ /\.ht {
 	#	deny all;
 	#}
+	
+	###
+	# Benchmarks
+	###
+	
+	server_tokens off; # 2.5.3
+	
+	location ~ /\. { 
+		deny all; return 404; # 2.5.3
+		# proxy_pass (Insert Application URL here);
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+	
+	# 4.1.1
+	#listen 80;
+	#server_name cisecurity.org;
+	#return 301 https://$host$request_uri;
+	
+	# 4.1.2
+	#listen 443 ssl http2;
+	#listen [::]:443 ssl http2;
+	#ssl_certificate /etc/nginx/cert.crt;
+	#ssl_certificate_key /etc/nginx/nginx.key;
+		
+	# 4.1.4
+	#ssl_protocols TLSv1.2 TLSv1.3;
+		
+	# 4.1.7
+	#ssl_stapling on;
+	#ssl_stapling_verify on;
+		
+	# 4.1.8
+	#add_header Strict-Transport-Security "max-age=15768000;" always;
+		
+	# 4.1.12
+	#ssl_session_tickets off;
+		
+	# 4.1.13
+	#listen 443 ssl http2;
+		
+	# 5.3.1
+	#add_header X-Frame-Options "SAMEORIGIN" always;
+		
+	# 5.3.2
+	#add_header X-Content-Type-Options "nosniff" always;
+		
+	# 5.3.3
+	#add_header Content-Security-Policy "default-src 'self'" always;
+		
+	# 5.3.4
+	#add_header Referrer-Policy "no-referrer";
 }
-
 
 # Virtual Host configuration for example.com
 #
@@ -89,57 +141,3 @@ server {
 #		try_files $uri $uri/ =404;
 #	}
 #}
-
-##
-# Benchmarks
-##
-	
-server {
-	server_tokens off; # 2.5.3
-		
-	# 3.7
-	location / { 
-		proxy_pass (Insert Application URL here);
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	}
-		
-	# 4.1.1
-	listen 80;
-	server_name cisecurity.org;
-	return 301 https://$host$request_uri;
-		
-	# 4.1.2
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	ssl_certificate /etc/nginx/cert.crt;
-	ssl_certificate_key /etc/nginx/nginx.key;
-		
-	# 4.1.4
-	ssl_protocols TLSv1.2 TLSv1.3;
-		
-	# 4.1.7
-	ssl_stapling on;
-	ssl_stapling_verify on;
-		
-	# 4.1.8
-	add_header Strict-Transport-Security "max-age=15768000;" always;
-		
-	# 4.1.12
-	ssl_session_tickets off;
-		
-	# 4.1.13
-	listen 443 ssl http2;
-		
-	# 5.3.1
-	add_header X-Frame-Options "SAMEORIGIN" always;
-		
-	# 5.3.2
-	add_header X-Content-Type-Options "nosniff" always;
-		
-	# 5.3.3
-	add_header Content-Security-Policy "default-src 'self'" always;
-		
-	# 5.3.4
-	add_header Referrer-Policy "no-referrer";
-}

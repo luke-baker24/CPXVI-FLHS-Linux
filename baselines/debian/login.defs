@@ -148,7 +148,7 @@ TTYPERM		0600
 #
 ERASECHAR	0177
 KILLCHAR	025
-UMASK		022
+UMASK		027
 
 #
 # Password aging controls:
@@ -157,9 +157,9 @@ UMASK		022
 #	PASS_MIN_DAYS	Minimum number of days allowed between password changes.
 #	PASS_WARN_AGE	Number of days warning given before a password expires.
 #
-PASS_MAX_DAYS	99999
-PASS_MIN_DAYS	0
-PASS_WARN_AGE	7
+PASS_MAX_DAYS	30
+PASS_MIN_DAYS	7
+PASS_WARN_AGE	14
 
 #
 # Min/max values for automatic uid selection in useradd
@@ -214,12 +214,13 @@ DEFAULT_HOME	yes
 #USERDEL_CMD	/usr/sbin/userdel_local
 
 #
+# Enable setting of the umask group bits to be the same as owner bits
+# (examples: 022 -> 002, 077 -> 007) for non-root users, if the uid is
+# the same as gid, and username is the same as the primary group name.
+#
 # If set to yes, userdel will remove the user's group if it contains no
 # more members, and useradd will create by default a group with the name
 # of the user.
-#
-# Other former uses of this variable such as setting the umask when
-# user==primary group are not used in PAM environments, such as Debian
 #
 USERGROUPS_ENAB yes
 
@@ -320,7 +321,7 @@ ENCRYPT_METHOD SHA512
 #ENV_HZ
 #CHFN_AUTH
 #CHSH_AUTH
-#FAIL_DELAY
+FAIL_DELAY 5
 
 ################# OBSOLETED #######################
 #						  #

@@ -22,12 +22,8 @@ KERNEL=="vchiq", TAG+="snap_snap-store_snap-store"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_snap-store_snap-store"
 # opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_snap-store_snap-store"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_snap-store_snap-store"
-# opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_snap-store_snap-store"
-TAG=="snap_snap-store_snap-store", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_snap-store $devpath $major:$minor"
+TAG=="snap_snap-store_snap-store", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_snap-store $devpath $major:$minor"
 # opengl
 KERNEL=="dma_buf_te", TAG+="snap_snap-store_ubuntu-software"
 # opengl
@@ -51,12 +47,8 @@ KERNEL=="vchiq", TAG+="snap_snap-store_ubuntu-software"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_snap-store_ubuntu-software"
 # opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_snap-store_ubuntu-software"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_snap-store_ubuntu-software"
-# opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_snap-store_ubuntu-software"
-TAG=="snap_snap-store_ubuntu-software", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_ubuntu-software $devpath $major:$minor"
+TAG=="snap_snap-store_ubuntu-software", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_ubuntu-software $devpath $major:$minor"
 # opengl
 KERNEL=="dma_buf_te", TAG+="snap_snap-store_ubuntu-software-local-file"
 # opengl
@@ -80,9 +72,5 @@ KERNEL=="vchiq", TAG+="snap_snap-store_ubuntu-software-local-file"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_snap-store_ubuntu-software-local-file"
 # opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_snap-store_ubuntu-software-local-file"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_snap-store_ubuntu-software-local-file"
-# opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_snap-store_ubuntu-software-local-file"
-TAG=="snap_snap-store_ubuntu-software-local-file", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_ubuntu-software-local-file $devpath $major:$minor"
+TAG=="snap_snap-store_ubuntu-software-local-file", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snap-store_ubuntu-software-local-file $devpath $major:$minor"

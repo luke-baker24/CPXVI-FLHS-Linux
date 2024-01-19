@@ -1,8 +1,0 @@
-bare
-core20
-firefox
-gnome-3-38-2004
-gtk-common-themes
-snap-store
-snapd
-snapd-desktop-integration

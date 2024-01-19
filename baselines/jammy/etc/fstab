@@ -6,8 +6,8 @@
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 # / was on /dev/sda3 during installation
-UUID=416b723d-fe72-41ef-b4ee-f2ca9edbf8cf /               ext4    errors=remount-ro 0       1
+UUID=47b861d7-c560-4764-98a7-7e2bfd36aa31 /               ext4    errors=remount-ro 0       1
 # /boot/efi was on /dev/sda2 during installation
-UUID=7409-5C2A  /boot/efi       vfat    umask=0077      0       1
+UUID=DF63-7670  /boot/efi       vfat    umask=0077      0       1
 /swapfile                                 none            swap    sw              0       0
 /dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0

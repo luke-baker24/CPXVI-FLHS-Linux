@@ -22,9 +22,5 @@ KERNEL=="vchiq", TAG+="snap_snapd-desktop-integration_snapd-desktop-integration"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_snapd-desktop-integration_snapd-desktop-integration"
 # opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_snapd-desktop-integration_snapd-desktop-integration"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_snapd-desktop-integration_snapd-desktop-integration"
-# opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_snapd-desktop-integration_snapd-desktop-integration"
-TAG=="snap_snapd-desktop-integration_snapd-desktop-integration", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snapd-desktop-integration_snapd-desktop-integration $devpath $major:$minor"
+TAG=="snap_snapd-desktop-integration_snapd-desktop-integration", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_snapd-desktop-integration_snapd-desktop-integration $devpath $major:$minor"

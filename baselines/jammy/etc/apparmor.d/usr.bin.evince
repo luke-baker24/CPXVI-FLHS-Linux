@@ -28,6 +28,9 @@
   #include <abstractions/ubuntu-console-email>
   #include <abstractions/ubuntu-media-players>
 
+  # allow evince to spawn browsers distributed as snaps (LP: #1794064)
+  #include <abstractions/snap_browsers>
+
   # For now, let evince talk to any session services over dbus. We can
   # blacklist any problematic ones (but note, evince uses libsecret :\)
   #include <abstractions/dbus-session>
@@ -146,6 +149,9 @@
   # evince creates a temporary stream file like '.goutputstream-XXXXXX' in the
   # directory a file is saved. This allows that behavior.
   owner /**/.goutputstream-* w,
+
+  # allow evince to spawn browsers distributed as snaps (LP: #1794064)
+  /{,snap/core/[0-9]*/,snap/snapd/[0-9]*/}usr/bin/snap mrCx -> snap_browsers,
 }
 
 /usr/bin/evince-previewer {

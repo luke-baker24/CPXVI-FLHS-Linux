@@ -2,7 +2,7 @@ root:*::
 daemon:*::
 bin:*::
 sys:*::
-adm:*::syslog,baker
+adm:*::syslog,ubuntu
 tty:*::
 disk:*::
 lp:*::
@@ -15,12 +15,12 @@ kmem:*::
 dialout:*::
 fax:*::
 voice:*::
-cdrom:*::baker
+cdrom:*::ubuntu
 floppy:*::
 tape:*::
-sudo:*::baker
+sudo:*::ubuntu
 audio:*::pulse
-dip:*::baker
+dip:*::ubuntu
 www-data:*::
 backup:*::
 operator:*::
@@ -32,7 +32,7 @@ shadow:*::
 utmp:*::
 video:*::
 sasl:*::
-plugdev:*::baker
+plugdev:*::ubuntu
 staff:*::
 games:*::
 users:*::
@@ -58,7 +58,7 @@ _ssh:!::
 avahi-autoipd:!::
 netdev:!::
 avahi:!::
-lpadmin:!::baker
+lpadmin:!::ubuntu
 rtkit:!::
 whoopsie:!::
 sssd:!::
@@ -70,8 +70,8 @@ geoclue:!::
 pulse:!::
 pulse-access:!::
 gdm:!::
-lxd:!::baker
-baker:!::
-sambashare:!::baker
+lxd:!::ubuntu
+ubuntu:!::
+sambashare:!::ubuntu
+fwupd-refresh:!::
 postfix:!::
-postdrop:!::

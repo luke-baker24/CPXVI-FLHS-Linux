@@ -32,10 +32,6 @@ KERNEL=="vchiq", TAG+="snap_firefox_firefox"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_firefox_firefox"
 # opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_firefox_firefox"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_firefox_firefox"
-# opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_firefox_firefox"
 # u2f-devices
 # Bluink Key
@@ -89,11 +85,8 @@ SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1209", ATTRS{idProduct
 # Thetis Key
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1ea8", ATTRS{idProduct}=="f025", TAG+="snap_firefox_firefox"
 # u2f-devices
-# Thetis U2F BT Fido2 Key
-SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1ea8", ATTRS{idProduct}=="fc25", TAG+="snap_firefox_firefox"
-# u2f-devices
-# Tomu board + chopstx U2F + SoloKeys + Flipper zero
-SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="cdab|a2ca|5741", TAG+="snap_firefox_firefox"
+# Tomu board + chopstx U2F + SoloKeys
+SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="cdab|a2ca", TAG+="snap_firefox_firefox"
 # u2f-devices
 # Trezor
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001|0002", TAG+="snap_firefox_firefox"
@@ -112,7 +105,7 @@ SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1a44", ATTRS{idProduct
 # u2f-devices
 # Yubico YubiKey
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0113|0114|0115|0116|0120|0121|0200|0402|0403|0406|0407|0410", TAG+="snap_firefox_firefox"
-TAG=="snap_firefox_firefox", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_firefox_firefox $devpath $major:$minor"
+TAG=="snap_firefox_firefox", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_firefox_firefox $devpath $major:$minor"
 # camera
 KERNEL=="vchiq", TAG+="snap_firefox_geckodriver"
 # camera
@@ -145,10 +138,6 @@ KERNEL=="tegra_dc_ctrl", TAG+="snap_firefox_geckodriver"
 KERNEL=="vchiq", TAG+="snap_firefox_geckodriver"
 # opengl
 KERNEL=="vcsm-cma", TAG+="snap_firefox_geckodriver"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="linux,cma", TAG+="snap_firefox_geckodriver"
-# opengl
-SUBSYSTEM=="dma_heap", KERNEL=="system", TAG+="snap_firefox_geckodriver"
 # opengl
 SUBSYSTEM=="drm", KERNEL=="card[0-9]*", TAG+="snap_firefox_geckodriver"
 # u2f-devices
@@ -203,11 +192,8 @@ SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1209", ATTRS{idProduct
 # Thetis Key
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1ea8", ATTRS{idProduct}=="f025", TAG+="snap_firefox_geckodriver"
 # u2f-devices
-# Thetis U2F BT Fido2 Key
-SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1ea8", ATTRS{idProduct}=="fc25", TAG+="snap_firefox_geckodriver"
-# u2f-devices
-# Tomu board + chopstx U2F + SoloKeys + Flipper zero
-SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="cdab|a2ca|5741", TAG+="snap_firefox_geckodriver"
+# Tomu board + chopstx U2F + SoloKeys
+SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="cdab|a2ca", TAG+="snap_firefox_geckodriver"
 # u2f-devices
 # Trezor
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001|0002", TAG+="snap_firefox_geckodriver"
@@ -226,4 +212,4 @@ SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1a44", ATTRS{idProduct
 # u2f-devices
 # Yubico YubiKey
 SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0113|0114|0115|0116|0120|0121|0200|0402|0403|0406|0407|0410", TAG+="snap_firefox_geckodriver"
-TAG=="snap_firefox_geckodriver", SUBSYSTEM!="module", SUBSYSTEM!="subsystem", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_firefox_geckodriver $devpath $major:$minor"
+TAG=="snap_firefox_geckodriver", RUN+="/usr/lib/snapd/snap-device-helper $env{ACTION} snap_firefox_geckodriver $devpath $major:$minor"

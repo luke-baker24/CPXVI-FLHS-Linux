@@ -7,9 +7,8 @@ X-Snappy=yes
 EnvironmentFile=-/etc/environment
 ExecStart=/usr/bin/snap run snapd-desktop-integration
 SyslogIdentifier=snapd-desktop-integration.snapd-desktop-integration
-Restart=on-success
-RestartSec=2
-WorkingDirectory=/var/snap/snapd-desktop-integration/83
+Restart=always
+WorkingDirectory=/var/snap/snapd-desktop-integration/14
 TimeoutStopSec=30
 Type=simple
 

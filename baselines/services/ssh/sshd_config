@@ -156,7 +156,6 @@ PermitUserEnvironment no
 PermitUserRc no
 PerSourceMaxStartups 1
 PerSourceNetBlockSize 32:128
-Port 2222
 PrintLastLog yes
 PubkeyAuthOptions verify-required
 PubkeyAuthentication yes

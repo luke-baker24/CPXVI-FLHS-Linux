@@ -6,16 +6,16 @@ deb http://deb.debian.org/debian/ bullseye main
 deb-src http://deb.debian.org/debian/ bullseye main
 
 # Line commented out by installer because it failed to verify:
-#deb http://security.debian.org/debian-security bullseye-security main
+deb http://security.debian.org/debian-security bullseye-security main
 # Line commented out by installer because it failed to verify:
-#deb-src http://security.debian.org/debian-security bullseye-security main
+deb-src http://security.debian.org/debian-security bullseye-security main
 
 # bullseye-updates, to get updates before a point release is made;
 # see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_updates_and_backports
 # Line commented out by installer because it failed to verify:
-#deb http://deb.debian.org/debian/ bullseye-updates main
+deb http://deb.debian.org/debian/ bullseye-updates main
 # Line commented out by installer because it failed to verify:
-#deb-src http://deb.debian.org/debian/ bullseye-updates main
+deb-src http://deb.debian.org/debian/ bullseye-updates main
 
 # This system was installed using small removable media
 # (e.g. netinst, live or single CD). The matching "deb cdrom"

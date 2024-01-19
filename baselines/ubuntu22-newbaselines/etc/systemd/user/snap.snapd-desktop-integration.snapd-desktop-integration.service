@@ -1,0 +1,16 @@
+[Unit]
+# Auto-generated, DO NOT EDIT
+Description=Service for snap application snapd-desktop-integration.snapd-desktop-integration
+X-Snappy=yes
+
+[Service]
+EnvironmentFile=-/etc/environment
+ExecStart=/usr/bin/snap run snapd-desktop-integration
+SyslogIdentifier=snapd-desktop-integration.snapd-desktop-integration
+Restart=always
+WorkingDirectory=/var/snap/snapd-desktop-integration/14
+TimeoutStopSec=30
+Type=simple
+
+[Install]
+WantedBy=default.target

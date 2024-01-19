@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount unit for firefox, revision 1635
+Before=snapd.service
+After=zfs-mount.service
+
+[Mount]
+What=/var/lib/snapd/snaps/firefox_1635.snap
+Where=/snap/firefox/1635
+Type=squashfs
+Options=nodev,ro,x-gdu.hide,x-gvfs-hide
+LazyUnmount=yes
+
+[Install]
+WantedBy=default.target multi-user.target

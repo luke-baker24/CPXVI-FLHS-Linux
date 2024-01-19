@@ -82,7 +82,7 @@ KbdInteractiveAuthentication no
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and KbdInteractiveAuthentication to 'no'.
-UsePAM no
+UsePAM yes
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
@@ -123,7 +123,6 @@ AcceptEnv no
 AddressFamily inet
 AllowAgentForwarding no
 AllowTcpForwarding no
-KbdInteractiveAuthetication yes
 Ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
 ClientAliveCountMax 1
 ClientAliveInterval 180
@@ -143,7 +142,7 @@ DisableForwarding yes
 ExposeAuthInfo no
 FingerprintHash sha256
 ForceCommand none
-KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group15-sha512,diffie-hellman-group14-sha526,diffie-hellman-group-exchage-sha256
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512
 #MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
 MaxAuthTries 3
 MaxSessions 3
@@ -159,10 +158,8 @@ PerSourceMaxStartups 1
 PerSourceNetBlockSize 32:128
 Port 2222
 PrintLastLog yes
-PubkeyAcceptedAlgorithms ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp512,rsa-sha2-512,rsa-sha2-256,ssh-rsa-sha256@ssh.com
 PubkeyAuthOptions verify-required
 PubkeyAuthentication yes
-RequiredRSASize 4096
 StreamLocalBindUnlink no
 StreamLocalBindMask 0177
 StrictModes yes

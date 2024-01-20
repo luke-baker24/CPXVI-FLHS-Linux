@@ -118,7 +118,7 @@ while true; do
                         "2)" "Package/snap scan." \
                         "3)" "Home directories scan." \
                         "4)" "/usr files scan." \
-                        "4)" "/etc baseline scan." \
+                        "5)" "/etc baseline scan." \
                         "X)" "Exit." 3>&2 2>&1 1>&3	
                 )
 
